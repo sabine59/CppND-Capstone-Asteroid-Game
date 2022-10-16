@@ -4,6 +4,7 @@
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
+	  ufo(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {
@@ -23,9 +24,9 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake);
+    controller.HandleInput(running, snake, ufo);
     Update();
-    renderer.Render(snake, food);
+    renderer.Render(snake, food, ufo);
 
     frame_end = SDL_GetTicks();
 
@@ -81,6 +82,8 @@ void Game::Update() {
     snake.GrowBody();
     snake.speed += 0.02;
   }
+  ufo.Update();
+  
 }
 
 int Game::GetScore() const { return score; }

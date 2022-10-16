@@ -32,24 +32,38 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   } 
   //sdl_window_surface =  SDL_GetWindowSurface(sdl_window);
+        
   const char *image_path = "./asteroid4_ergebnis.bmp";
   image = SDL_LoadBMP(image_path);
-
- // SDL_BlitScaled(image, NULL, sdl_window_surface, &rect);
+// load the textures
 /* Let the user know if the file failed to load */
   if (!image) {
     printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
     return;
   }
-    texture = SDL_CreateTextureFromSurface(sdl_renderer, image);
-    if (!texture) {
+    asteroid1 = SDL_CreateTextureFromSurface(sdl_renderer, image);
+    if (!asteroid1) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
         return;
     }
   SDL_FreeSurface(image);
- // SDL_UpdateWindowSurface(sdl_window);
+
+  image_path = "./Ufo_F9.bmp";
+  image1_f1 = SDL_LoadBMP(image_path);
+// load the textures
+/* Let the user know if the file failed to load */
+  if (!image1_f1) {
+    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
+    return;
+  }
+    ufo_Frame1 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f1);
+    if (!ufo_Frame1) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+        return;
+    }
+  SDL_FreeSurface(image1_f1);
 speed = 5;
-/* Do something with image here. */
+
 
 /* Make sure to eventually release the surface resource */
 
@@ -66,7 +80,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food) {
+void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo const ufo) {
   SDL_Rect block;
   SDL_Rect block1;
   SDL_Rect block2;
@@ -120,7 +134,14 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   //speed = speed+5;
   rect.x = block.x +speed;
   rect.y = speed;
-        SDL_RenderCopy(sdl_renderer, texture, NULL, &rect);
+  SDL_RenderCopy(sdl_renderer, asteroid1, NULL, &rect);
+         SDL_Rect rect_ufo;
+        rect.w = 328;
+        rect.h = 140;
+  //speed = speed+5;
+  rect.x = ufo.x_pos;
+  rect.y = ufo.y_pos;
+  SDL_RenderCopy(sdl_renderer,ufo_Frame1, NULL, &rect);
 
     
   // test other geometrical forms end
