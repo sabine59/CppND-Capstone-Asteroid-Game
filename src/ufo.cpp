@@ -31,8 +31,8 @@ void Ufo::UpdatePosition() {
   }
 
   // Wrap the Ufo around to the beginning if going off of the screen.
-  x_pos = fmod(x_pos + grid_width, grid_width);
-  y_pos = fmod(y_pos + grid_height, grid_height);
+ // x_pos = fmod(x_pos + grid_width, grid_width);
+ // y_pos = fmod(y_pos + grid_height, grid_height);
 }
 
 

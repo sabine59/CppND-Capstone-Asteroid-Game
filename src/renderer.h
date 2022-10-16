@@ -23,6 +23,14 @@ class Renderer {
   SDL_Surface *sdl_window_surface;
   SDL_Surface *image;
   SDL_Surface *image1_f1;
+  SDL_Surface *image1_f2;
+  SDL_Surface *image1_f3;
+  SDL_Surface *image1_f4;
+  SDL_Surface *image1_f5;
+  SDL_Surface *image1_f6;
+  SDL_Surface *image1_f7;
+  SDL_Surface *image1_f8;
+  SDL_Surface *image1_f9;
   SDL_Texture *asteroid1;
   SDL_Texture *ufo_Frame1;
   SDL_Texture *ufo_Frame2;
@@ -34,6 +42,7 @@ class Renderer {
   SDL_Texture *ufo_Frame8;
   SDL_Texture *ufo_Frame9;
   int speed;
+  int lastUfoFrame = 9;
   
   const std::size_t screen_width;
   const std::size_t screen_height;

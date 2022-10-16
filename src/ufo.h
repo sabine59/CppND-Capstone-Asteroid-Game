@@ -20,12 +20,12 @@ class Ufo {
 
   Direction direction = Direction::kUp;
 
-  float speed{0.1f};
+  float speed{0.5f};
 
   bool alive{true};
   float x_pos;
   float y_pos;
-  std::vector<SDL_Point> _frames;
+  std::vector<SDL_Texture *> _frames;
 
  private:
   void UpdatePosition();
