@@ -2,6 +2,8 @@
 #define UFO_H
 
 #include <vector>
+#include <string>
+#include <memory>
 #include "SDL.h"
 
 class Ufo {
@@ -19,7 +21,6 @@ class Ufo {
 
   void Update();
 
-  void Fire();
 
   Direction direction = Direction::none;
 
@@ -28,8 +29,10 @@ class Ufo {
   bool alive{true};
 
   SDL_Rect rect_ufo;
-   
-  std::vector<SDL_Texture *> _frames;
+  bool isFiring=false;
+
+  static std::vector<std::string> normal_frame_files;
+  static std::vector<std::string> firing_frame_files;
 
  private:
   void UpdatePosition();
@@ -38,5 +41,6 @@ class Ufo {
   int _grid_width;
   int _grid_height;
 };
+
 
 #endif

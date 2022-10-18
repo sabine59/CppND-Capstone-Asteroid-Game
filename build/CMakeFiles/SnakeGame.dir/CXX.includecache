@@ -6,16 +6,34 @@
 
 #IncludeRegexTransform: 
 
-/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.cpp
-ufo.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
-cmath
--
+/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.cpp
+controller.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.h
 iostream
 -
+SDL.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h
+snake.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/snake.h
+
+/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.h
+snake.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/snake.h
+ufo.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
+
+/home/workspace/CppND-Capstone-Asteroid-Game/src/snake.h
+vector
+-
+SDL.h
+/home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h
 
 /home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
 vector
+-
+string
+-
+memory
 -
 SDL.h
 /home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h

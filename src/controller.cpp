@@ -39,6 +39,14 @@ void Controller::HandleInput(bool &running, Snake &snake, Ufo &ufo) const {
                           Snake::Direction::kLeft);
           ufo.direction = Ufo::Direction::kRight;
           break;
+          
+        case SDLK_f:
+          ufo.isFiring = true;
+          break;
+          
+        default:
+          ufo.isFiring = false;
+          break;
       }
     }
   }

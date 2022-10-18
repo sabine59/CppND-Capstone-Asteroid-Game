@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <vector>
+#include <memory>
 #include "SDL.h"
 #include "snake.h"
 #include "ufo.h"
@@ -22,15 +23,9 @@ class Renderer {
   SDL_Renderer *sdl_renderer;
   SDL_Surface *sdl_window_surface;
   SDL_Surface *image;
-  SDL_Surface *image1_f1;
-  SDL_Surface *image1_f2;
-  SDL_Surface *image1_f3;
-  SDL_Surface *image1_f4;
-  SDL_Surface *image1_f5;
-  SDL_Surface *image1_f6;
-  SDL_Surface *image1_f7;
-  SDL_Surface *image1_f8;
-  SDL_Surface *image1_f9;
+
+  std::vector<std::unique_ptr<SDL_Texture *>> _normal_frames;
+  std::vector<std::unique_ptr<SDL_Texture *>> _firing_frames;
   SDL_Texture *asteroid1;
   SDL_Texture *ufo_Frame1;
   SDL_Texture *ufo_Frame2;
@@ -42,7 +37,7 @@ class Renderer {
   SDL_Texture *ufo_Frame8;
   SDL_Texture *ufo_Frame9;
   int speed;
-  int lastUfoFrame = 9;
+  int lastUfoFrame = 8;
   
   const std::size_t screen_width;
   const std::size_t screen_height;

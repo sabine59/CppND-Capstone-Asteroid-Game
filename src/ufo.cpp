@@ -2,6 +2,30 @@
 #include <cmath>
 #include <iostream>
 
+std::vector<std::string> Ufo::normal_frame_files {
+    "./images/Ufo_F1.bmp",
+    "./images/Ufo_F2.bmp",
+    "./images/Ufo_F3.bmp",
+    "./images/Ufo_F4.bmp",
+    "./images/Ufo_F5.bmp",
+    "./images/Ufo_F6.bmp",
+    "./images/Ufo_F7.bmp",
+    "./images/Ufo_F8.bmp",
+    "./images/Ufo_F9.bmp"
+    };
+  
+std::vector<std::string> Ufo::firing_frame_files {
+    "./images/Ufo_fire_f1.bmp",
+    "./images/Ufo_fire_f2.bmp",
+    "./images/Ufo_fire_f3.bmp",
+    "./images/Ufo_fire_f4.bmp",
+    "./images/Ufo_fire_f5.bmp",
+    "./images/Ufo_fire_f6.bmp",
+    "./images/Ufo_fire_f7.bmp",
+    "./images/Ufo_fire_f8.bmp",
+    "./images/Ufo_fire_f9.bmp"
+    };
+
 void Ufo::Update() {
   SDL_Point prev_cell{
       static_cast<int>(rect_ufo.x),

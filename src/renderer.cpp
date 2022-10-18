@@ -35,8 +35,9 @@ Renderer::Renderer(const std::size_t screen_width,
         
   const char *image_path = "./images/asteroid4_ergebnis.bmp";
   image = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
+        
+
+
   if (!image) {
     printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
     return;
@@ -47,141 +48,50 @@ Renderer::Renderer(const std::size_t screen_width,
         return;
     }
   SDL_FreeSurface(image);
+        
+  // load the textures for the ufo normal appearance frames
+  for (std::string image_path : Ufo::normal_frame_files) {
+    image = SDL_LoadBMP(image_path.c_str());
+    if (!image) {
+    	printf("Failed to load image at %s: %s\n", image_path.c_str(), SDL_GetError());
+    	return;
+  	}
+    
+    	printf("Loaded surface image  %s\r\n", image_path.c_str());
+    SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
+    if (!ufo_Frame) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
+        return;
+    }
+    
+    	printf("Created texture  %s\r\n", image_path.c_str());
+    SDL_FreeSurface(image);
+    _normal_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
+ 
+  }
+        
+  // load the textures for the ufo firing appearance frames
+  for (std::string image_path : Ufo::firing_frame_files) {
+    image = SDL_LoadBMP(image_path.c_str());
+    if (!image) {
+    	printf("Failed to load image at %s: %s\n", image_path.c_str(), SDL_GetError());
+    	return;
+  	}
+    
+    	printf("Loaded surface image  %s\r\n", image_path.c_str());
+    SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
+    if (!ufo_Frame) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
+        return;
+    }
+    
+    	printf("Created texture  %s\r\n", image_path.c_str());
+    SDL_FreeSurface(image);
+    _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
+ 
+  }
 
-  image_path = "./images/Ufo_F1.bmp";
-  image1_f1 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f1) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame1 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f1);
-    if (!ufo_Frame1) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame1 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f1);
-        
-  image_path = "./images/Ufo_F2.bmp";
-  image1_f2 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f2) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame2 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f2);
-    if (!ufo_Frame2) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame2 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f2);
-        
-          image_path = "./images/Ufo_F3.bmp";
-  image1_f3 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f3) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame3 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f3);
-    if (!ufo_Frame3) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame3 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f3);
-        
-          image_path = "./images/Ufo_F4.bmp";
-  image1_f4 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f4) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame4 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f4);
-    if (!ufo_Frame4) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame4 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f4);
-        
-                  image_path = "./images/Ufo_F5.bmp";
-  image1_f5 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f5) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame5 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f5);
-    if (!ufo_Frame5) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame5 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f5);
-        
-                  image_path = "./images/Ufo_F6.bmp";
-  image1_f6 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f6) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame6 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f6);
-    if (!ufo_Frame6) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame6 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f6);
-        
-                  image_path = "./images/Ufo_F7.bmp";
-  image1_f7 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f7) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame7 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f7);
-    if (!ufo_Frame7) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame7 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f7);
-        
-                  image_path = "./images/Ufo_F8.bmp";
-  image1_f8 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f8) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame8 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f8);
-    if (!ufo_Frame8) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame8 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f8);
-        
-                  image_path = "./images/Ufo_F9.bmp";
-  image1_f9 = SDL_LoadBMP(image_path);
-// load the textures
-/* Let the user know if the file failed to load */
-  if (!image1_f9) {
-    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
-    return;
-  }
-    ufo_Frame9 = SDL_CreateTextureFromSurface(sdl_renderer, image1_f9);
-    if (!ufo_Frame9) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame9 from surface: %s", SDL_GetError());
-        return;
-    }
-  SDL_FreeSurface(image1_f9);
+
 speed = 5;
 
 
@@ -196,20 +106,13 @@ SDL_Log("But we are linking against SDL version %u.%u.%u.\n",
 
 Renderer::~Renderer() {
   SDL_DestroyTexture(asteroid1);
-  SDL_DestroyTexture(ufo_Frame1);
-   SDL_DestroyTexture(ufo_Frame2);
-   SDL_DestroyTexture(ufo_Frame3);
-   SDL_DestroyTexture(ufo_Frame4);
-   SDL_DestroyTexture(ufo_Frame5);
-   SDL_DestroyTexture(ufo_Frame6);
-   SDL_DestroyTexture(ufo_Frame7);
-   SDL_DestroyTexture(ufo_Frame8);
-   SDL_DestroyTexture(ufo_Frame9);
+ 
+
   SDL_DestroyWindow(sdl_window);
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo const ufo) {
+void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo ufo) {
   SDL_Rect block;
   SDL_Rect block1;
   SDL_Rect block2;
@@ -265,49 +168,22 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo const ufo) {
   rect.y = speed;
   SDL_RenderCopy(sdl_renderer, asteroid1, NULL, &rect);
   
-  switch (lastUfoFrame) {
-    case 9:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame1, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 1;
-      break;
-         case 1:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame2, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 2;
-      break;
-         case 2:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame3, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 3;
-      break;
-         case 3:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame4, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 4;
-      break;
-      
-               case 4:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame5, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 5;
-      break;
-      
-               case 5:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame6, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 6;
-      break;
-      
-               case 6:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame7, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 7;
-      break;
-      
-               case 7:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame8, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 8;
-      break;
-      
-               case 8:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame9, NULL, &ufo.rect_ufo);
-      lastUfoFrame = 9;
-      break;
+  lastUfoFrame++;
+  if (lastUfoFrame == 9) 
+    lastUfoFrame =0;
+
+  int fireFrameCount = 9;
+  if (!ufo.isFiring) {
+    SDL_RenderCopy(sdl_renderer, *(_normal_frames).at(lastUfoFrame).get(), NULL, &ufo.rect_ufo);
+    fireFrameCount = 9;
+  } else {
+    if (fireFrameCount-- >1) {
+    	SDL_RenderCopy(sdl_renderer, *(_firing_frames).at(lastUfoFrame).get(), NULL, &ufo.rect_ufo);
+    } else {
+      ufo.isFiring = false;
+    }
   }
+ 
 
 
     
