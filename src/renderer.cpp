@@ -33,7 +33,7 @@ Renderer::Renderer(const std::size_t screen_width,
   } 
   //sdl_window_surface =  SDL_GetWindowSurface(sdl_window);
         
-  const char *image_path = "./asteroid4_ergebnis.bmp";
+  const char *image_path = "./images/asteroid4_ergebnis.bmp";
   image = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -48,7 +48,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image);
 
-  image_path = "./Ufo_F1.bmp";
+  image_path = "./images/Ufo_F1.bmp";
   image1_f1 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -63,7 +63,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f1);
         
-  image_path = "./Ufo_F2.bmp";
+  image_path = "./images/Ufo_F2.bmp";
   image1_f2 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -78,7 +78,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f2);
         
-          image_path = "./Ufo_F3.bmp";
+          image_path = "./images/Ufo_F3.bmp";
   image1_f3 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -93,7 +93,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f3);
         
-          image_path = "./Ufo_F4.bmp";
+          image_path = "./images/Ufo_F4.bmp";
   image1_f4 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -108,7 +108,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f4);
         
-                  image_path = "./Ufo_F5.bmp";
+                  image_path = "./images/Ufo_F5.bmp";
   image1_f5 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -123,7 +123,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f5);
         
-                  image_path = "./Ufo_F6.bmp";
+                  image_path = "./images/Ufo_F6.bmp";
   image1_f6 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -138,7 +138,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f6);
         
-                  image_path = "./Ufo_F7.bmp";
+                  image_path = "./images/Ufo_F7.bmp";
   image1_f7 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -153,7 +153,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f7);
         
-                  image_path = "./Ufo_F8.bmp";
+                  image_path = "./images/Ufo_F8.bmp";
   image1_f8 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -168,7 +168,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
   SDL_FreeSurface(image1_f8);
         
-                  image_path = "./Ufo_F9.bmp";
+                  image_path = "./images/Ufo_F9.bmp";
   image1_f9 = SDL_LoadBMP(image_path);
 // load the textures
 /* Let the user know if the file failed to load */
@@ -264,52 +264,47 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo const ufo) {
   rect.x = block.x +speed;
   rect.y = speed;
   SDL_RenderCopy(sdl_renderer, asteroid1, NULL, &rect);
-         SDL_Rect rect_ufo;
-        rect.w = 164;
-        rect.h = 70;
-  //speed = speed+5;
-  rect.x = ufo.x_pos;
-  rect.y = ufo.y_pos;
+  
   switch (lastUfoFrame) {
     case 9:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame1, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame1, NULL, &ufo.rect_ufo);
       lastUfoFrame = 1;
       break;
          case 1:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame2, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame2, NULL, &ufo.rect_ufo);
       lastUfoFrame = 2;
       break;
          case 2:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame3, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame3, NULL, &ufo.rect_ufo);
       lastUfoFrame = 3;
       break;
          case 3:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame4, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame4, NULL, &ufo.rect_ufo);
       lastUfoFrame = 4;
       break;
       
                case 4:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame5, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame5, NULL, &ufo.rect_ufo);
       lastUfoFrame = 5;
       break;
       
                case 5:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame6, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame6, NULL, &ufo.rect_ufo);
       lastUfoFrame = 6;
       break;
       
                case 6:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame7, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame7, NULL, &ufo.rect_ufo);
       lastUfoFrame = 7;
       break;
       
                case 7:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame8, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame8, NULL, &ufo.rect_ufo);
       lastUfoFrame = 8;
       break;
       
                case 8:
-       SDL_RenderCopy(sdl_renderer,ufo_Frame9, NULL, &rect);
+       SDL_RenderCopy(sdl_renderer,ufo_Frame9, NULL, &ufo.rect_ufo);
       lastUfoFrame = 9;
       break;
   }

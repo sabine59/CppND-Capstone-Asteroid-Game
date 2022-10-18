@@ -6,32 +6,37 @@
 
 class Ufo {
  public:
-  enum class Direction { kUp, kDown, kLeft, kRight };
+  enum class Direction { kUp, kDown, kLeft, kRight, none };
 
-  Ufo(int grid_width, int grid_height)
-      : grid_width(grid_width),
-        grid_height(grid_height),
-        x_pos(grid_width / 2),
-        y_pos(grid_height / 2) {}
+  Ufo(int screen_width, int screen_height, int grid_width, int grid_height)
+      : _screen_width(screen_width), _screen_height(screen_height), _grid_width(grid_width), _grid_height(grid_height) {
+        	rect_ufo.w = 164;
+            rect_ufo.h = 70;
+            rect_ufo.x = grid_width / 2;
+            rect_ufo.y = screen_height / 2;
+          
+        }
 
   void Update();
 
   void Fire();
 
-  Direction direction = Direction::kUp;
+  Direction direction = Direction::none;
 
-  float speed{0.5f};
+  float speed{6.5f};
 
   bool alive{true};
-  float x_pos;
-  float y_pos;
+
+  SDL_Rect rect_ufo;
+   
   std::vector<SDL_Texture *> _frames;
 
  private:
   void UpdatePosition();
-
-  int grid_width;
-  int grid_height;
+  int _screen_width;
+  int _screen_height;
+  int _grid_width;
+  int _grid_height;
 };
 
 #endif

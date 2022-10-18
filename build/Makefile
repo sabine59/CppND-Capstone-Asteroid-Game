@@ -258,6 +258,33 @@ src/snake.cpp.s:
 	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/snake.cpp.s
 .PHONY : src/snake.cpp.s
 
+src/ufo.o: src/ufo.cpp.o
+
+.PHONY : src/ufo.o
+
+# target to build an object file
+src/ufo.cpp.o:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/ufo.cpp.o
+.PHONY : src/ufo.cpp.o
+
+src/ufo.i: src/ufo.cpp.i
+
+.PHONY : src/ufo.i
+
+# target to preprocess a source file
+src/ufo.cpp.i:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/ufo.cpp.i
+.PHONY : src/ufo.cpp.i
+
+src/ufo.s: src/ufo.cpp.s
+
+.PHONY : src/ufo.s
+
+# target to generate assembly for a file
+src/ufo.cpp.s:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/ufo.cpp.s
+.PHONY : src/ufo.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -282,6 +309,9 @@ help:
 	@echo "... src/snake.o"
 	@echo "... src/snake.i"
 	@echo "... src/snake.s"
+	@echo "... src/ufo.o"
+	@echo "... src/ufo.i"
+	@echo "... src/ufo.s"
 .PHONY : help
 
 
