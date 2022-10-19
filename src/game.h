@@ -17,8 +17,7 @@ class Game {
   int GetSize() const;
 
  private:
-  Snake snake;
-  SDL_Point food;
+
   Ufo ufo;
 
   std::random_device dev;
@@ -28,7 +27,6 @@ class Game {
 
   int score{0};
 
-  void PlaceFood();
   void Update();
 };
 

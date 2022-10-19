@@ -6,29 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.cpp
-controller.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.h
-iostream
--
-SDL.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h
-snake.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/snake.h
-
 /home/workspace/CppND-Capstone-Asteroid-Game/src/controller.h
 snake.h
 /home/workspace/CppND-Capstone-Asteroid-Game/src/snake.h
 ufo.h
 /home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
-
-/home/workspace/CppND-Capstone-Asteroid-Game/src/game.cpp
-game.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/game.h
-iostream
--
-SDL.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h
 
 /home/workspace/CppND-Capstone-Asteroid-Game/src/game.h
 random
@@ -54,14 +36,6 @@ game.h
 renderer.h
 /home/workspace/CppND-Capstone-Asteroid-Game/src/renderer.h
 
-/home/workspace/CppND-Capstone-Asteroid-Game/src/renderer.cpp
-renderer.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/renderer.h
-iostream
--
-string
--
-
 /home/workspace/CppND-Capstone-Asteroid-Game/src/renderer.h
 vector
 -
@@ -79,14 +53,6 @@ vector
 -
 SDL.h
 /home/workspace/CppND-Capstone-Asteroid-Game/src/SDL.h
-
-/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.cpp
-ufo.h
-/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
-cmath
--
-iostream
--
 
 /home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.h
 vector
