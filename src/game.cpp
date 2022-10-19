@@ -18,7 +18,6 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 
   while (running) {
     frame_start = SDL_GetTicks();
-
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, ufo);
     Update();

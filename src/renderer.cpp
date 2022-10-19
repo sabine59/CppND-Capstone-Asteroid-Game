@@ -57,14 +57,14 @@ Renderer::Renderer(const std::size_t screen_width,
     	return;
   	}
     
-    	printf("Loaded surface image  %s\r\n", image_path.c_str());
+    	//printf("Loaded surface image  %s\r\n", image_path.c_str());
     SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
     if (!ufo_Frame) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
         return;
     }
     
-    	printf("Created texture  %s\r\n", image_path.c_str());
+    	//printf("Created texture  %s\r\n", image_path.c_str());
     SDL_FreeSurface(image);
     _normal_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
  
@@ -78,14 +78,14 @@ Renderer::Renderer(const std::size_t screen_width,
     	return;
   	}
     
-    	printf("Loaded surface image  %s\r\n", image_path.c_str());
+    	//printf("Loaded surface image  %s\r\n", image_path.c_str());
     SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
     if (!ufo_Frame) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
         return;
     }
     
-    	printf("Created texture  %s\r\n", image_path.c_str());
+    	//printf("Created texture  %s\r\n", image_path.c_str());
     SDL_FreeSurface(image);
     _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
  
