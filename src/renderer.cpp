@@ -11,10 +11,10 @@ Renderer::Renderer(const std::size_t screen_width,
       grid_width(grid_width),
       grid_height(grid_height) {
   // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+/*  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
-  }
+  } */
 
   // Create Window
   sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
@@ -109,7 +109,7 @@ Renderer::~Renderer() {
  
 
   SDL_DestroyWindow(sdl_window);
-  SDL_Quit();
+  //SDL_Quit();
 }
 
 void Renderer::Render(Snake const snake, SDL_Point const &food, Ufo ufo) {

@@ -4,7 +4,7 @@
 
 Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
-	  ufo(screen_width, screen_height,grid_width, grid_height),
+	  ufo(screen_width, screen_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {

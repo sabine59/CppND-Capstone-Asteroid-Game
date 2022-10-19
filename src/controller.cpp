@@ -16,6 +16,10 @@ void Controller::HandleInput(bool &running, Snake &snake, Ufo &ufo) const {
       running = false;
     } else if (e.type == SDL_KEYDOWN) {
       switch (e.key.keysym.sym) {
+        case SDLK_f:
+          ufo.isFiring = true;
+          break;
+          
         case SDLK_UP:
           ChangeDirection(snake, Snake::Direction::kUp,
                           Snake::Direction::kDown);
@@ -40,14 +44,35 @@ void Controller::HandleInput(bool &running, Snake &snake, Ufo &ufo) const {
           ufo.direction = Ufo::Direction::kRight;
           break;
           
+          
+        default:
+          break;
+      }
+    } else if (e.type == SDL_KEYUP) {
+      switch (e.key.keysym.sym) {
         case SDLK_f:
-          ufo.isFiring = true;
+          ufo.isFiring = false;
+          break;
+          
+        case SDLK_UP:
+          ufo.direction = Ufo::Direction::none;
+          break;
+
+        case SDLK_DOWN:
+          ufo.direction = Ufo::Direction::none;
+          break;
+
+        case SDLK_LEFT:
+          ufo.direction = Ufo::Direction::none;
+          break;
+
+        case SDLK_RIGHT:
+          ufo.direction = Ufo::Direction::none;
           break;
           
         default:
-          ufo.isFiring = false;
           break;
       }
-    }
+    }  
   }
 }
