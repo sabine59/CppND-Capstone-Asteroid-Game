@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/workspace/CppND-Capstone-Asteroid-Game/src/celestrial_body.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/celestrial_body.cpp.o"
   "/home/workspace/CppND-Capstone-Asteroid-Game/src/controller.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/controller.cpp.o"
   "/home/workspace/CppND-Capstone-Asteroid-Game/src/game.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/game.cpp.o"
   "/home/workspace/CppND-Capstone-Asteroid-Game/src/main.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/main.cpp.o"
   "/home/workspace/CppND-Capstone-Asteroid-Game/src/renderer.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/renderer.cpp.o"
-  "/home/workspace/CppND-Capstone-Asteroid-Game/src/snake.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/snake.cpp.o"
   "/home/workspace/CppND-Capstone-Asteroid-Game/src/ufo.cpp" "/home/workspace/CppND-Capstone-Asteroid-Game/build/CMakeFiles/SnakeGame.dir/src/ufo.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

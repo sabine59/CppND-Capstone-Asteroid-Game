@@ -37,7 +37,6 @@ Renderer::Renderer(const std::size_t screen_width,
   image = SDL_LoadBMP(image_path);
         
 
-
   if (!image) {
     printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
     return;
@@ -112,7 +111,28 @@ Renderer::~Renderer() {
   //SDL_Quit();
 }
 
-void Renderer::Render(Ufo ufo) {
+void Renderer::createTextureFromFile(std::string path) {
+    SDL_Surface *imageObject = SDL_LoadBMP(path.c_str());
+    if (!imageObject) {
+    	printf("Failed to load image at %s: %s\n", path.c_str(), SDL_GetError());
+    	return;
+  	}
+    
+    	//printf("Loaded surface image  %s\r\n", image_path.c_str());
+    SDL_Texture * frame = SDL_CreateTextureFromSurface(sdl_renderer, imageObject);
+    if (!frame) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", path.c_str(), SDL_GetError());
+        return;
+    }
+    
+    	//printf("Created texture  %s\r\n", image_path.c_str());
+    SDL_FreeSurface(imageObject);
+    _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
+   printf("Texture created \n");
+}
+
+
+void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &planets) {
   SDL_Rect block;
 
   // Clear screen
@@ -128,7 +148,22 @@ void Renderer::Render(Ufo ufo) {
   rect.y = 100;
   SDL_RenderCopy(sdl_renderer, asteroid1, NULL, &rect);
   
-  lastUfoFrame++;
+
+ 
+  // render planets
+
+   if (!_celBodyTextures.empty()) {
+     //printf("_celBody not empty \n");
+   	 for (unsigned int i = 0; i < _celBodyTextures.size(); i++) {
+       if (*(_celBodyTextures).at(i).get() && (*(planets).at(i).get())->_isOnStage) {
+    	SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i).get(), NULL, &(*(planets).at(i).get())->rect);
+       printf("render \n");
+       }
+     }
+   }
+  
+  // render ufo frames
+    lastUfoFrame++;
   if (lastUfoFrame == 9) 
     lastUfoFrame =0;
 
@@ -143,12 +178,6 @@ void Renderer::Render(Ufo ufo) {
       ufo.isFiring = false;
     }
   }
- 
-
-
-    
-  // test other geometrical forms end
-  
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
   

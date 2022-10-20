@@ -4,9 +4,8 @@
 #include <vector>
 #include <memory>
 #include "SDL.h"
-#include "snake.h"
 #include "ufo.h"
-
+#include "celestrial_body.h"
 
 
 class Renderer {
@@ -15,7 +14,8 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Ufo const ufo);
+  void createTextureFromFile(std::string path);
+  void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &planets);
   void UpdateWindowTitle(int score, int fps);
 
  private:
@@ -26,16 +26,9 @@ class Renderer {
 
   std::vector<std::unique_ptr<SDL_Texture *>> _normal_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _firing_frames;
+  std::vector<std::unique_ptr<SDL_Texture *>> _celBodyTextures;
   SDL_Texture *asteroid1;
-  SDL_Texture *ufo_Frame1;
-  SDL_Texture *ufo_Frame2;
-  SDL_Texture *ufo_Frame3;
-  SDL_Texture *ufo_Frame4;
-  SDL_Texture *ufo_Frame5;
-  SDL_Texture *ufo_Frame6;
-  SDL_Texture *ufo_Frame7;
-  SDL_Texture *ufo_Frame8;
-  SDL_Texture *ufo_Frame9;
+
   int speed;
   int lastUfoFrame = 8;
   

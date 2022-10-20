@@ -7,9 +7,12 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {
-      for ( unsigned int i = 0; i<planetPaths.size() ; i++) {
-        planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height -200, 100., 100., -20., 20., planetPaths[i], 4000)));
-      }
+      // initialize the planets
+      Uint32 game_start = SDL_GetTicks();
+   
+      // Uranus:
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width-200, 200, 100, 100, 1., 0., planetPaths[7], game_start+4000)));
+   
     /*  planets["Merkur.bmp"] = 34000;
       planets["Venus.bmp"] =30000;
       planets["Erde.bmp"] = 26000;
@@ -22,6 +25,7 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
+  Uint32 game_start = title_timestamp;;
   Uint32 frame_start;
   Uint32 frame_end;
   Uint32 frame_duration;
@@ -30,11 +34,12 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 
   while (running) {
     frame_start = SDL_GetTicks();
-
+    // check, which of the objects have to be on stage now
+    CheckForAppearanceOnStage(frame_start, renderer);
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, ufo);
     Update();
-    renderer.Render(ufo);
+    renderer.Render(ufo,planets);
 
     frame_end = SDL_GetTicks();
 
@@ -60,9 +65,31 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 }
 
 
+void Game::CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer) {
+
+ 	for (std::shared_ptr planet : planets) {
+      
+    	
+      if ((frame_start > (*(planet).get())->GetTimeOA() ) && !(*(planet).get())->_isOnStage && (*(planet).get())->_expectedOnStage) {
+        
+    	printf("Time to appear frame_start: %u, time to appear %u \n", frame_start, (*(planet).get())->GetTimeOA());
+        if (!(*(planet).get())->_isOnStage ) {
+          printf("is not yet on stage \n");
+        	(*(planet).get())->_isOnStage = true;
+        	renderer.createTextureFromFile((*(planet).get())->filepath);
+        }
+      }
+    }
+  
+}
+
 void Game::Update() {
 
   ufo.Update();
+  for (std::shared_ptr planet : planets) {
+  	(*(planet).get())->Update((int)ufo.rect_ufo.x);
+  }
+
   
 }
 

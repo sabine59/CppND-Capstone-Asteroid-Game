@@ -123,6 +123,33 @@ SnakeGame/fast:
 	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/build
 .PHONY : SnakeGame/fast
 
+src/celestrial_body.o: src/celestrial_body.cpp.o
+
+.PHONY : src/celestrial_body.o
+
+# target to build an object file
+src/celestrial_body.cpp.o:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/celestrial_body.cpp.o
+.PHONY : src/celestrial_body.cpp.o
+
+src/celestrial_body.i: src/celestrial_body.cpp.i
+
+.PHONY : src/celestrial_body.i
+
+# target to preprocess a source file
+src/celestrial_body.cpp.i:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/celestrial_body.cpp.i
+.PHONY : src/celestrial_body.cpp.i
+
+src/celestrial_body.s: src/celestrial_body.cpp.s
+
+.PHONY : src/celestrial_body.s
+
+# target to generate assembly for a file
+src/celestrial_body.cpp.s:
+	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/celestrial_body.cpp.s
+.PHONY : src/celestrial_body.cpp.s
+
 src/controller.o: src/controller.cpp.o
 
 .PHONY : src/controller.o
@@ -231,33 +258,6 @@ src/renderer.cpp.s:
 	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/renderer.cpp.s
 .PHONY : src/renderer.cpp.s
 
-src/snake.o: src/snake.cpp.o
-
-.PHONY : src/snake.o
-
-# target to build an object file
-src/snake.cpp.o:
-	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/snake.cpp.o
-.PHONY : src/snake.cpp.o
-
-src/snake.i: src/snake.cpp.i
-
-.PHONY : src/snake.i
-
-# target to preprocess a source file
-src/snake.cpp.i:
-	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/snake.cpp.i
-.PHONY : src/snake.cpp.i
-
-src/snake.s: src/snake.cpp.s
-
-.PHONY : src/snake.s
-
-# target to generate assembly for a file
-src/snake.cpp.s:
-	$(MAKE) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/snake.cpp.s
-.PHONY : src/snake.cpp.s
-
 src/ufo.o: src/ufo.cpp.o
 
 .PHONY : src/ufo.o
@@ -294,6 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... SnakeGame"
 	@echo "... edit_cache"
+	@echo "... src/celestrial_body.o"
+	@echo "... src/celestrial_body.i"
+	@echo "... src/celestrial_body.s"
 	@echo "... src/controller.o"
 	@echo "... src/controller.i"
 	@echo "... src/controller.s"
@@ -306,9 +309,6 @@ help:
 	@echo "... src/renderer.o"
 	@echo "... src/renderer.i"
 	@echo "... src/renderer.s"
-	@echo "... src/snake.o"
-	@echo "... src/snake.i"
-	@echo "... src/snake.s"
 	@echo "... src/ufo.o"
 	@echo "... src/ufo.i"
 	@echo "... src/ufo.s"

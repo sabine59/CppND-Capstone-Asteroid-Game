@@ -6,7 +6,6 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
-#include "celestrial_body.h"
 #include "ufo.h"
 
 class Game {
@@ -16,27 +15,30 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
-  std::vector<std::unique_ptr<CelBody *>> planets;
+  
 
  private:
   std::vector<std::string> planetPaths = {
-    "Merkur.bmp", 
-    "Venus.bmp", 
-    "Erde.bmp", 
-    "Mars.bmp", 
-    "Saturn.bmp", 
-    "Jupiter.bmp", 
-    "Neptun.bmp", 
-    "Uranus.bmp"
+    "./images/Merkur.bmp", 
+    "./images/Venus.bmp", 
+    "./images/Erde.bmp", 
+    "./images/Mars.bmp", 
+    "./images/Saturn.bmp", 
+    "./images/Jupiter.bmp", 
+    "./images/Neptun.bmp", 
+    "./images/Uranus.bmp"
   };
+ 
   Ufo ufo;
+  std::vector<std::shared_ptr<CelBody *>> planets;
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
 
   int score{0};
-
+  
+  void CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer);
   void Update();
 };
 
