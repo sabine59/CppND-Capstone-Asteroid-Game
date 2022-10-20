@@ -11,25 +11,25 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::
       Uint32 game_start = SDL_GetTicks();
    
       // Uranus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 100, screen_width/20,  1.5, 0., planetPaths[7], game_start+1000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height/10, screen_width/20,  1.5, 0., planetPaths[7], game_start+1000)));
       // Neptun:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 350, screen_width/12,  0.5, 0., planetPaths[6], game_start+7000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*25/100, screen_width/10,  0.5, 0., planetPaths[6], game_start+7000)));
         
       // Jupiter:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 150, screen_width/2,  1.0, 0., planetPaths[5], game_start+30000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100, screen_width/2,  1.0, 0., planetPaths[5], game_start+18000)));
       // Saturn:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 500, screen_width/3,  0.5, 0., planetPaths[4], game_start+70000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*50/100, screen_width/2,  0.5, 0., planetPaths[4], game_start+50000)));
       // Mars:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 400, screen_width/6,  0.5, 0., planetPaths[3], game_start+140000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*40/100, screen_width/6,  0.5, 0., planetPaths[3], game_start+100000)));
         
       // Erde:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 350, screen_width/6,  0.5, 0., planetPaths[2], game_start+190000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*35/100, screen_width/6,  0.5, 0., planetPaths[2], game_start+150000)));
         
       // Venus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 150, screen_width/6,  0.5, 0., planetPaths[1], game_start+230000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100, screen_width/6,  0.5, 0., planetPaths[1], game_start+190000)));
         
       // Venus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, 250, screen_width/8,  0.5, 0., planetPaths[0], game_start+300000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*25/100, screen_width/8,  0.5, 0., planetPaths[0], game_start+230000)));
   
     /*  planets["Merkur.bmp"] = 34000;
       planets["Venus.bmp"] =30000;

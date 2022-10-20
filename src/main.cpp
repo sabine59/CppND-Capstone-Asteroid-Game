@@ -37,10 +37,10 @@ SDL_DisplayMode current;
   }
   
  // Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Renderer renderer(current.w, current.h, kGridWidth, kGridHeight);
+  Renderer renderer(current.w/2, current.h/2, kGridWidth, kGridHeight);
   Controller controller;
   //Game game(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Game game(current.w, current.h, kGridWidth, kGridHeight);
+  Game game(current.w/2, current.h/2, kGridWidth, kGridHeight);
   game.Run(controller, renderer, kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Score: " << game.GetScore() << "\n";
