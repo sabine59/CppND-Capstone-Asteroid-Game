@@ -26,7 +26,7 @@ class Renderer {
 
   std::vector<std::unique_ptr<SDL_Texture *>> _normal_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _firing_frames;
-  std::vector<std::unique_ptr<SDL_Texture *>> _celBodyTextures;
+  std::vector<std::unique_ptr<SDL_Texture *>> _celBodyTextures {};
   SDL_Texture *asteroid1;
 
   int speed;

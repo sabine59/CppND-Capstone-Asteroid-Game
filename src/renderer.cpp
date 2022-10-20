@@ -128,7 +128,7 @@ void Renderer::createTextureFromFile(std::string path) {
     	//printf("Created texture  %s\r\n", image_path.c_str());
     SDL_FreeSurface(imageObject);
     _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
-   printf("Texture created \n");
+  // printf("Texture created \n");
 }
 
 
@@ -154,10 +154,11 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &p
 
    if (!_celBodyTextures.empty()) {
      //printf("_celBody not empty \n");
-   	 for (unsigned int i = 0; i < _celBodyTextures.size(); i++) {
-       if (*(_celBodyTextures).at(i).get() && (*(planets).at(i).get())->_isOnStage) {
-    	SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i).get(), NULL, &(*(planets).at(i).get())->rect);
-       printf("render \n");
+     int size = _celBodyTextures.size();
+   	 for (unsigned int i = size; i > 0 ; i--) {
+       if (*(_celBodyTextures).at(i-1).get() && (*(planets).at(i-1).get())->_isOnStage) {
+    	SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i-1).get(), NULL, &(*(planets).at(i-1).get())->rect);
+       //printf("render \n");
        }
      }
    }

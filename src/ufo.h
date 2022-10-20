@@ -14,7 +14,7 @@ class Ufo {
       : _screen_width(screen_width), _screen_height(screen_height) {
         	rect_ufo.w = 164;
             rect_ufo.h = 70;
-            rect_ufo.x = screen_width / 5;
+            rect_ufo.x = screen_width / 3;
             rect_ufo.y = screen_height / 2;
           
         }

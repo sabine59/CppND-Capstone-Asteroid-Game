@@ -7,10 +7,10 @@
 class CelBody {
  public:
 
-  CelBody(int screen_width, int screen_height, int start_x, int start_y, int width, int height, float v_x, float v_y, std::string path, Uint32 timeOfAppearance)
+  CelBody(int screen_width, int screen_height, int start_x, int start_y, int size, float v_x, float v_y, std::string path, Uint32 timeOfAppearance)
       :_screen_width(screen_width), _screen_height(screen_height),  _velocity_x(v_x), _velocity_y(v_y), filepath(path), _timeOA(timeOfAppearance) {
-        	rect.w = width;
-            rect.h = height;
+        	rect.w = size;
+            rect.h = size;
             rect.x = start_x;
             rect.y = start_y;
         }
@@ -29,6 +29,8 @@ class CelBody {
   int _screen_height;
   float _velocity_x;
   float _velocity_y;
+  float _vel_x=0;
+  float _vel_y=0;
   double growing=0;
 };
 
