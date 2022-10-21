@@ -5,7 +5,7 @@ CelBody::~CelBody() {};
 
 void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
   if (_isOnStage) {
-    _growing += 0.0002*rect.w; // grows dependent of the bodies size
+    _growing += 0.0003*rect.w; // grows dependent of the bodies size
     _vel_x += _velocity_x;
     _vel_y += _velocity_y;
     if (_vel_x > 1) {
@@ -19,7 +19,8 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
 
     
     if (_growing > 1) {
-      if ((ufo_rect.x + (ufo_rect.w/2)) < (rect.x + (rect.w/2))) {
+      //if ((ufo_rect.x + (ufo_rect.w/2)) < (rect.x + (rect.w/2))) {
+        if ((ufo_rect.x + ufo_rect.w) < (rect.x + (rect.w/2))) {
       // the body grows, until the x-middle of the ufo is reached.
        rect.w += 1;
        rect.h += 1;
@@ -30,7 +31,7 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
             rect.y = 0; // the body isn't any more displayed, if the y-position is outside the screen
           }
        }
-      } else {
+      } else if (ufo_rect.x  > (rect.x + (rect.w/2))) {
       // after the x-middle the body shrinks again.
        rect.w -= 1;
        rect.h -= 1;
