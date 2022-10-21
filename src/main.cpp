@@ -6,12 +6,9 @@
 int main() {
   constexpr std::size_t kFramesPerSecond{60};
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
-  constexpr std::size_t kScreenWidth{1000};
-  constexpr std::size_t kScreenHeight{1000};
-  constexpr std::size_t kGridWidth{32};
-  constexpr std::size_t kGridHeight{32};
+  constexpr std::size_t kScreenWidth{1280};
+  constexpr std::size_t kScreenHeight{720};
 
-  
     // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -36,11 +33,9 @@ SDL_DisplayMode current;
 
   }
   
- // Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Renderer renderer(current.w/2, current.h/2, kGridWidth, kGridHeight);
+  Renderer renderer(current.w/2, current.h/2);
   Controller controller;
-  //Game game(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-  Game game(current.w/2, current.h/2, kGridWidth, kGridHeight);
+  Game game(current.w/2, current.h/2);
   game.Run(controller, renderer, kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Score: " << game.GetScore() << "\n";

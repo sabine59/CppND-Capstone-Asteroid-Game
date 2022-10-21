@@ -2,11 +2,10 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::size_t grid_width, std::size_t grid_height)
+Game::Game(const std::size_t screen_width, const std::size_t screen_height)
     : ufo(screen_width, screen_height),
-      engine(dev()),
-      random_w(0, static_cast<int>(grid_width - 1)),
-      random_h(0, static_cast<int>(grid_height - 1)) {
+      engine(dev())
+      {
       // initialize the planets
       Uint32 game_start = SDL_GetTicks();
    
@@ -30,15 +29,7 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::
         
       // Venus:
       planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*25/100, screen_width/10,  2.0, 0., planetPaths[0], game_start+280000)));
-  
-    /*  planets["Merkur.bmp"] = 34000;
-      planets["Venus.bmp"] =30000;
-      planets["Erde.bmp"] = 26000;
-      planets["Mars.bmp"] = 22000;
-      planets["Saturn.bmp"] = 16000;
-      planets["Jupiter.bmp"] =13000;
-      planets["Neptun.bmp"] = 8000;
-      planets["Uranus.bmp"] = 4000; */
+
       }
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) {
