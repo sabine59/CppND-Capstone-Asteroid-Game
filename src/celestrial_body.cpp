@@ -8,11 +8,11 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
     _growing += 0.0003*rect.w; // grows dependent of the bodies size
     _vel_x += _velocity_x;
     _vel_y += _velocity_y;
-    if (_vel_x > 1) {
+    if (_vel_x > 10) {
       rect.x -= 1;
       _vel_x = 0;
     }
-     if (_vel_y > 1) {
+     if (_vel_y > 10) {
       rect.y -= 1;
       _vel_y = 0;
     }
