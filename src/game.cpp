@@ -105,7 +105,7 @@ void Game::Update() {
 
   ufo.Update();
   for (std::shared_ptr planet : planets) {
-  	(*(planet).get())->Update((int)ufo.rect_ufo.x);
+  	(*(planet).get())->Update(ufo.rect_ufo);
   }
 
   

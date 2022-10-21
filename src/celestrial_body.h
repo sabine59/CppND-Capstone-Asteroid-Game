@@ -20,10 +20,10 @@ class CelBody {
   SDL_Rect rect;
   std::string filepath;
   Uint32 GetTimeOA() { return _timeOA; }
-  void Update(int xpos_ufo) { this->UpdatePosition(xpos_ufo); };
+  void Update(SDL_Rect ufo_rect) { this->UpdatePosition(ufo_rect); };
   
  private:
-  void UpdatePosition(int xpos_ufo);
+  void UpdatePosition(SDL_Rect ufo_rect);
   Uint32 _timeOA;
   int _screen_width;
   int _screen_height;

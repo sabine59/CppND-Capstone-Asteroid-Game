@@ -3,7 +3,7 @@
 CelBody::~CelBody() {};
 
 
-void CelBody::UpdatePosition(int ufo_x) {
+void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
   if (_isOnStage) {
     growing += 0.05;
     _vel_x += _velocity_x;
@@ -19,7 +19,7 @@ void CelBody::UpdatePosition(int ufo_x) {
 
     
     if ((growing - 1.0) > 0) {
-      if (ufo_x < rect.x) {
+      if ((ufo_rect.x + (ufo_rect.w/2)) < (rect.x + (rect.w/2))) {
        rect.w += 1;
        rect.h += 1;
       } else {
