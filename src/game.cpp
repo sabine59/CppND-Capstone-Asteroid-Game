@@ -85,7 +85,7 @@ void Game::CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer) {
         if (!(*(planet).get())->_isOnStage ) {
           //printf("is not yet on stage \n");
         	(*(planet).get())->_isOnStage = true;
-        	renderer.createTextureFromFile((*(planet).get())->filepath);
+        	renderer.createTextureFromFile((*(planet).get())->filepath, 2);
         }
       }
     }

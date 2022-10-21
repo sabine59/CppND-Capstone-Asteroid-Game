@@ -13,7 +13,7 @@ class Renderer {
   Renderer(const std::size_t screen_width, const std::size_t screen_height);
   ~Renderer();
 
-  void createTextureFromFile(std::string path);
+  void createTextureFromFile(std::string path, int objectType);
   void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &planets);
   void UpdateWindowTitle(int score, int fps);
 

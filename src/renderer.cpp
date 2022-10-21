@@ -47,44 +47,12 @@ Renderer::Renderer(const std::size_t screen_width,
         
   // load the textures for the ufo normal appearance frames
   for (std::string image_path : Ufo::normal_frame_files) {
-    image = SDL_LoadBMP(image_path.c_str());
-    if (!image) {
-    	printf("Failed to load image at %s: %s\n", image_path.c_str(), SDL_GetError());
-    	return;
-  	}
-    
-    	//printf("Loaded surface image  %s\r\n", image_path.c_str());
-    SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
-    if (!ufo_Frame) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
-        return;
-    }
-    
-    	//printf("Created texture  %s\r\n", image_path.c_str());
-    SDL_FreeSurface(image);
-    _normal_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
- 
+    createTextureFromFile(image_path, 0);
   }
         
   // load the textures for the ufo firing appearance frames
   for (std::string image_path : Ufo::firing_frame_files) {
-    image = SDL_LoadBMP(image_path.c_str());
-    if (!image) {
-    	printf("Failed to load image at %s: %s\n", image_path.c_str(), SDL_GetError());
-    	return;
-  	}
-    
-    	//printf("Loaded surface image  %s\r\n", image_path.c_str());
-    SDL_Texture * ufo_Frame = SDL_CreateTextureFromSurface(sdl_renderer, image);
-    if (!ufo_Frame) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture ufo_Frame from surface %s: %s", image_path.c_str(), SDL_GetError());
-        return;
-    }
-    
-    	//printf("Created texture  %s\r\n", image_path.c_str());
-    SDL_FreeSurface(image);
-    _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (ufo_Frame));
- 
+      createTextureFromFile(image_path, 1);
   }
 
 
@@ -108,7 +76,7 @@ Renderer::~Renderer() {
   //SDL_Quit();
 }
 
-void Renderer::createTextureFromFile(std::string path) {
+void Renderer::createTextureFromFile(std::string path, int objectType) {
     SDL_Surface *imageObject = SDL_LoadBMP(path.c_str());
     if (!imageObject) {
     	printf("Failed to load image at %s: %s\n", path.c_str(), SDL_GetError());
@@ -124,8 +92,16 @@ void Renderer::createTextureFromFile(std::string path) {
     
     	//printf("Created texture  %s\r\n", image_path.c_str());
     SDL_FreeSurface(imageObject);
-    _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
-  // printf("Texture created \n");
+    if (objectType == 0)
+      _normal_frames.emplace_back(std::make_unique<SDL_Texture *> (frame));
+    else if (objectType == 1)
+      _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (frame));
+      else if (objectType == 2) 
+      _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
+    else if (objectType == 2) 
+    ;
+    else
+      printf("Texture from unnokn object type createt \r\n");
 }
 
 
