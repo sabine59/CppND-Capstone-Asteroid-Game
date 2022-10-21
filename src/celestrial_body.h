@@ -13,6 +13,7 @@ class CelBody {
             rect.h = size;
             rect.x = start_x;
             rect.y = start_y;
+            _growing_rect_y = start_y;
         }
   ~CelBody();
   bool _isOnStage = false;
@@ -31,7 +32,9 @@ class CelBody {
   float _velocity_y;
   float _vel_x=0;
   float _vel_y=0;
-  double growing=0;
+  int _growing_rect_y;
+  double _growing=0;
+  int _growing_count=0;
 };
 
 

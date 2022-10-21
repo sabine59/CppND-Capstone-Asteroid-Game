@@ -18,7 +18,7 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height,std::
       // Jupiter:
       planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*8/100, screen_width/2,  1.0, 0., planetPaths[5], game_start+18000)));
       // Saturn:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*45/100, screen_width/2,  0.5, 0., planetPaths[4], game_start+50000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*35/100, screen_width/2,  0.5, 0., planetPaths[4], game_start+50000)));
       // Mars:
       planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*45/100, screen_width/6,  0.5, 0., planetPaths[3], game_start+120000)));
         
