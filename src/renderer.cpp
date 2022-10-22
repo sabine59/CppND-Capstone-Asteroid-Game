@@ -10,8 +10,17 @@ Renderer::Renderer(const std::size_t screen_width,
   // Initialize SDL
 /*  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
-    std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
-  } */
+    std::cerr << "SDL_Error: " << SDL_GetError() << "\n"; */
+    rect_b1.w = screen_width;
+    rect_b1.h = screen_height;
+    rect_b1.x = 0;
+    rect_b1.y = 0;
+    rect_b2.w = screen_width;
+    rect_b2.h = screen_height;
+    rect_b2.x = screen_width;
+    rect_b2.y = 0;
+    xpos_factor = 0;
+  
 
   // Create Window
   sdl_window = SDL_CreateWindow("Asteroid Game", SDL_WINDOWPOS_CENTERED,
@@ -30,7 +39,7 @@ Renderer::Renderer(const std::size_t screen_width,
   } 
   //sdl_window_surface =  SDL_GetWindowSurface(sdl_window);
         
-  const char *image_path = "./images/asteroid4_ergebnis.bmp";
+  const char *image_path = "./images/bgstars_1.bmp";
   image = SDL_LoadBMP(image_path);
         
 
@@ -38,8 +47,8 @@ Renderer::Renderer(const std::size_t screen_width,
     printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
     return;
   }
-    asteroid1 = SDL_CreateTextureFromSurface(sdl_renderer, image);
-    if (!asteroid1) {
+    background = SDL_CreateTextureFromSurface(sdl_renderer, image);
+    if (!background) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create textureasteroid1 from surface: %s", SDL_GetError());
         return;
     }
@@ -56,9 +65,6 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
 
-speed = 5;
-
-
 /* Make sure to eventually release the surface resource */
 
         
@@ -69,7 +75,7 @@ SDL_Log("But we are linking against SDL version %u.%u.%u.\n",
 }
 
 Renderer::~Renderer() {
-  SDL_DestroyTexture(asteroid1);
+  SDL_DestroyTexture(background);
   // Although the vector<unique_ptr> is destroyed automatically,
   // the SDL lib requires the destruction of the SDL_texture.
   // As the lib is not written in c++, there is no destructor,
@@ -128,14 +134,19 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planet
   //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-
-  SDL_Rect rect;
-  rect.w = 64;
-  rect.h = 64;
-
-  rect.x = 100;
-  rect.y = 100;
-  SDL_RenderCopy(sdl_renderer, asteroid1, NULL, &rect);
+  xpos_factor++;
+  if (xpos_factor >= 9) {
+    rect_b1.x--;
+    if (rect_b1.x + screen_width <= 0)
+       rect_b1.x = screen_width-1;
+    rect_b2.x--;
+    if (rect_b2.x + screen_width <= 0)
+       rect_b2.x = screen_width-1;
+    xpos_factor = 0;
+  }
+ 
+  SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b1);
+  SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b2);
   
 
  

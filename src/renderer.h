@@ -26,8 +26,10 @@ class Renderer {
   std::vector<std::unique_ptr<SDL_Texture *>> _normal_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _firing_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _celBodyTextures {};
-  SDL_Texture *asteroid1;
-
+  SDL_Texture *background;
+  SDL_Rect rect_b1;
+  SDL_Rect rect_b2;
+  int xpos_factor;
   int speed;
   int lastUfoFrame = 8;
   
