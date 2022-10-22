@@ -121,7 +121,7 @@ void Renderer::createTextureFromFile(std::string path, int objectType) {
 }
 
 
-void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &planets) {
+void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planets) {
   SDL_Rect block;
 
   // Clear screen
@@ -143,11 +143,18 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &p
 
    if (!_celBodyTextures.empty()) {
      //printf("_celBody not empty \n");
-     int size = _celBodyTextures.size();
-   	 for (unsigned int i = size; i > 0 ; i--) {
+  
+   	 for (unsigned int i = _celBodyTextures.size(); i > 0 ; i--) {
        if (*(_celBodyTextures).at(i-1).get() && (*(planets).at(i-1).get())->_isOnStage) {
-    	SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i-1).get(), NULL, &(*(planets).at(i-1).get())->rect);
-       //printf("render \n");
+    	   SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i-1).get(), NULL, &(*(planets).at(i-1).get())->rect);
+         //printf("render planet %u \n", i-1);
+       } else {
+        // Destroy the planet and its texture as soon as it has left the stage
+        planets.erase(planets.begin() + (i-1));
+        //printf("erase planet %u \n", i-1);
+        SDL_DestroyTexture(*(_celBodyTextures).at(i-1).get());
+        _celBodyTextures.erase(_celBodyTextures.begin() + (i-1));
+        break;
        }
      }
    }

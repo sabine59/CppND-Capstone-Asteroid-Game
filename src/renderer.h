@@ -14,7 +14,7 @@ class Renderer {
   ~Renderer();
 
   void createTextureFromFile(std::string path, int objectType);
-  void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> const &planets);
+  void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planets);
   void UpdateWindowTitle(int score, int fps);
 
  private:
