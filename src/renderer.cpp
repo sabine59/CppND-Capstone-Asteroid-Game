@@ -70,8 +70,24 @@ SDL_Log("But we are linking against SDL version %u.%u.%u.\n",
 
 Renderer::~Renderer() {
   SDL_DestroyTexture(asteroid1);
- 
-
+  // Although the vector<unique_ptr> is destroyed automatically,
+  // the SDL lib requires the destruction of the SDL_texture.
+  // As the lib is not written in c++, there is no destructor,
+  // which can be executed automatically with the destruction of the smartpointers.
+  // So therefore here: destruct texture frames of the ufo
+  while (_normal_frames.size() > 0) {
+    SDL_DestroyTexture((SDL_Texture *)_normal_frames.back().get());
+    _normal_frames.pop_back();
+  }
+  while (_firing_frames.size() !=0) {
+    SDL_DestroyTexture((SDL_Texture *)_firing_frames.back().get());
+     _firing_frames.pop_back();
+  }
+  // Desatruct textures of the remaining planets.
+  while (_celBodyTextures.size() !=0) {
+    SDL_DestroyTexture((SDL_Texture *)_celBodyTextures.back().get());
+     _celBodyTextures.pop_back();
+  }
   SDL_DestroyWindow(sdl_window);
   //SDL_Quit();
 }
