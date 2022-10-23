@@ -15,6 +15,9 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
      if (_vel_y > 10) {
       rect.y -= 1;
       _vel_y = 0;
+    } else if (_vel_y < -10) {
+      rect.y += 1;
+      _vel_y = 0;
     }
 
     

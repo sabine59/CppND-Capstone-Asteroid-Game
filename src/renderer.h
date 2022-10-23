@@ -5,7 +5,7 @@
 #include <memory>
 #include "SDL.h"
 #include "ufo.h"
-#include "celestrial_body.h"
+#include "asteroid.h"
 
 
 class Renderer {
@@ -14,7 +14,7 @@ class Renderer {
   ~Renderer();
 
   void createTextureFromFile(std::string path, int objectType);
-  void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planets);
+  void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planets, std::vector<std::shared_ptr<Asteroid *>>  &asteroids);
   void UpdateWindowTitle(int score, int fps);
 
  private:
@@ -26,6 +26,7 @@ class Renderer {
   std::vector<std::unique_ptr<SDL_Texture *>> _normal_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _firing_frames;
   std::vector<std::unique_ptr<SDL_Texture *>> _celBodyTextures {};
+  std::vector<std::unique_ptr<SDL_Texture *>> _asteroidTextures {};
   SDL_Texture *background;
   SDL_Rect rect_b1;
   SDL_Rect rect_b2;

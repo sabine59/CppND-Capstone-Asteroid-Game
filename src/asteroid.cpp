@@ -3,8 +3,9 @@
 Asteroid::~Asteroid() { CelBody::~CelBody(); };
 
 
-void Asteroid::UpdatePosition(SDL_Rect ufo_rect) {
+void Asteroid::UpdatePosition1(SDL_Rect ufo_rect) {
   if (_isOnStage) {
+    //printf("Update Position Asteroid \n");
     _vel_x += _velocity_x;
     _vel_y += _velocity_y;
     if (_vel_x > 10) {
@@ -12,6 +13,7 @@ void Asteroid::UpdatePosition(SDL_Rect ufo_rect) {
       _vel_x = 0;
     }
      if (_vel_y > 10) {
+      printf("Update Position Asteroid \n");
       rect.y -= 1;
       _vel_y = 0;
     }

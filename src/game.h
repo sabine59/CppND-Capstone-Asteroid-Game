@@ -28,9 +28,24 @@ class Game {
     "./images/Neptun.bmp", 
     "./images/Uranus.bmp"
   };
+
+    std::vector<std::string> asteroidPaths = {
+    "./images/asteroid1.bmp", 
+    "./images/asteroid2.bmp", 
+    "./images/asteroid3.bmp", 
+    "./images/asteroid4.bmp", 
+    "./images/asteroid5.bmp", 
+    "./images/asteroid6.bmp", 
+    "./images/asteroid7.bmp", 
+    "./images/asteroid8.bmp",
+    "./images/asteroid9.bmp",
+    "./images/asteroid10.bmp",
+    "./images/asteroid12.bmp",
+  };
  
   Ufo ufo;
   std::vector<std::shared_ptr<CelBody *>> planets;
+  std::vector<std::shared_ptr<Asteroid *>> asteroids;
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;

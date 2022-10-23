@@ -12,10 +12,11 @@ class Asteroid : public CelBody {
 
   ~Asteroid();
 
+  void Update1(SDL_Rect ufo_rect) { this->UpdatePosition1(ufo_rect); };
   bool isHit = false;
 
  private:
-  void UpdatePosition(SDL_Rect ufo_rect);
+  void UpdatePosition1(SDL_Rect ufo_rect);
 
   Uint32 _timeOA;
   int _screen_width;
