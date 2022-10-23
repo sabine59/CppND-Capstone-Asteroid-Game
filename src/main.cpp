@@ -6,8 +6,14 @@
 int main() {
   constexpr std::size_t kFramesPerSecond{60};
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
-  constexpr std::size_t kScreenWidth{1280};
-  constexpr std::size_t kScreenHeight{720};
+  constexpr std::size_t kScreenWidth{1000};
+  constexpr std::size_t kScreenHeight{1000};
+  //constexpr std::size_t kScreenWidth{1280};
+  //constexpr std::size_t kScreenHeight{720};
+  // All the movements are compured related to a screenw width of 1280
+  // To keep the layout the same a screen factor is necessary
+  // regarding the velocity, when another screen size is choosen
+
 
     // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -16,8 +22,8 @@ int main() {
   }
   static int display_in_use = 0; /* Only using first display */
 
-int i;
-SDL_DisplayMode current;
+  int i;
+  SDL_DisplayMode current;
  // Get current display mode of all displays.
   for(i = 0; i < SDL_GetNumVideoDisplays(); ++i){
 
@@ -32,10 +38,15 @@ SDL_DisplayMode current;
       SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz.", i, current.w, current.h, current.refresh_rate);
 
   }
-  
-  Renderer renderer(kScreenWidth, kScreenHeight);
+  current.w = current.w/3;
+  current.h = current.h/3;
+  //current.w = 1000;
+  //current.h = 1000;
+  float screenFactorX = (float)current.w/1280.0; 
+  float screenFactorY = (float)current.h/720.0; 
+  Renderer renderer(current.w, current.h);
   Controller controller;
-  Game game(kScreenWidth, kScreenHeight);
+  Game game(current.w, current.h, screenFactorX, screenFactorY);
   game.Run(controller, renderer, kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Score: " << game.GetScore() << "\n";

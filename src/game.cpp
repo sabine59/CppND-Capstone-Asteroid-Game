@@ -2,34 +2,37 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(const std::size_t screen_width, const std::size_t screen_height)
-    : ufo(screen_width, screen_height),
-      engine(dev())
+Game::Game(const std::size_t screen_width, const std::size_t screen_height, const float screenFactorX, const float screenFactorY)
+    : ufo(screen_width, screen_height, screenFactorX, screenFactorY),
+      engine(dev()),
+      sfX(screenFactorX),
+      sfY(screenFactorY)
       {
       // initialize the planets
       Uint32 game_start = SDL_GetTicks();
-   
+      printf("screenFactorX: %f, screenFactorY: %f", sfX, sfY);
       // Uranus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height/10, screen_width/25,  6.0, 0., planetPaths[7], game_start+500)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height/10/sfY, sfX*screen_width/25,  sfX*6.0, 0., planetPaths[7], sfX*(game_start+500))));
       // Neptun:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100, screen_width/16,  3.0, 0., planetPaths[6], game_start+10000)));
+      
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100/sfY, sfX*screen_width/16,  sfX*3.5, 0., planetPaths[6], sfX*(game_start+12000))));
         
       // Jupiter:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100, screen_width/4,  4.0, 0., planetPaths[5], game_start+20000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*15/100/sfY, sfX*screen_width/4,  sfX*5.0, 0., planetPaths[5], sfX*(game_start+20000))));
       // Saturn:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*35/100, screen_width/4,  3.0, 0., planetPaths[4], game_start+60000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*35/100/sfY, sfX*screen_width/4,  sfX*3.0, 0., planetPaths[4], sfX*(game_start+65000))));
       // Mars:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*45/100, screen_width/6,  3.0, 0., planetPaths[3], game_start+180000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, sfY*screen_height*45/100/sfY, sfX*screen_width/7,  sfX*3.5, 0., planetPaths[3], sfX*(game_start+150000))));
         
       // Erde:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*35/100, screen_width/9,  2.5, 0., planetPaths[2], game_start+230000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, sfY*screen_height*35/100/sfY, sfX*screen_width/9,  sfX*3.0, 0., planetPaths[2], sfX*(game_start+230000))));
         
       // Venus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*10/100, screen_width/10,  2.5, 0., planetPaths[1], game_start+280000)));
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, sfY*screen_height*10/100/sfY, sfX*screen_width/10,  sfX*2.5, 0., planetPaths[1], sfX*(game_start+280000))));
         
       // Venus:
-      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, screen_height*25/100, screen_width/10,  2.0, 0., planetPaths[0], game_start+330000)));
-
+      planets.emplace_back(std::make_unique <CelBody *> (new CelBody(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*screen_width/10,  sfX*2.0, 0., planetPaths[0], sfX*(game_start+330000))));
+      
       }
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) {
@@ -83,7 +86,7 @@ void Game::CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer) {
         
     	//printf("Time to appear frame_start: %u, time to appear %u \n", frame_start, (*(planet).get())->GetTimeOA());
         if (!(*(planet).get())->_isOnStage ) {
-          //printf("is not yet on stage \n");
+          printf("is not yet on stage \n");
         	renderer.createTextureFromFile((*(planet).get())->filepath, 2);
           (*(planet).get())->_isOnStage = true;
         }

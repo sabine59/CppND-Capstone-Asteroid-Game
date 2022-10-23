@@ -19,9 +19,8 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
 
     
     if (_growing > 1) {
-      //if ((ufo_rect.x + (ufo_rect.w/2)) < (rect.x + (rect.w/2))) {
-        if ((ufo_rect.x + ufo_rect.w) < (rect.x + (rect.w/2))) {
-      // the body grows, until the x-middle of the ufo is reached.
+        if ((ufo_rect.x + ufo_rect.w) < rect.x ) {
+      // the body grows, until the x-pos + width of the ufo is reached.
        rect.w += 1;
        rect.h += 1;
        _growing_count++;
@@ -31,8 +30,8 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
             rect.y = 0; // the body isn't any more displayed, if the y-position is outside the screen
           }
        }
-      } else if (ufo_rect.x  > (rect.x + (rect.w/2))) {
-      // after the x-middle the body shrinks again.
+      } else if (ufo_rect.x  > (rect.x + (rect.w))) {
+      // after the ufo has left the x-pos+width of the body the body shrinks again.
        rect.w -= 1;
        rect.h -= 1;
        _growing_count++;
@@ -52,7 +51,7 @@ void CelBody::UpdatePosition(SDL_Rect ufo_rect) {
       _expectedOnStage = false;
       _isOnStage = false;
     }
-    if ( _screen_height < rect.y || rect.y < 0 ) {
+    if ( _screen_height < rect.y || (rect.y+rect.h) < 0 ) {
       
       //printf("is !onStage %s %u screenheight: %u\n", filepath.c_str(), rect.y, _screen_height);
       _expectedOnStage = false;

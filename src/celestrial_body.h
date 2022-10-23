@@ -7,13 +7,14 @@
 class CelBody {
  public:
 
-  CelBody(int screen_width, int screen_height, int start_x, int start_y, int size, float v_x, float v_y, std::string path, Uint32 timeOfAppearance)
+  CelBody(int screen_width, int screen_height, float start_x, float start_y, float size, float v_x, float v_y, std::string path, Uint32 timeOfAppearance)
       :_screen_width(screen_width), _screen_height(screen_height),  _velocity_x(v_x), _velocity_y(v_y), filepath(path), _timeOA(timeOfAppearance) {
-        	rect.w = size;
-            rect.h = size;
-            rect.x = start_x;
-            rect.y = start_y;
-            _growing_rect_y = start_y;
+            printf(" planet size: %u, startx: %u, starty: %u", (int) size, (int) start_x, (int) start_y);
+        	rect.w = (int) size;
+            rect.h = (int) size;
+            rect.x = (int) start_x;
+            rect.y = (int) start_y;
+            _growing_rect_y = (int) start_y;
         }
   ~CelBody();
   bool _isOnStage = false;

@@ -118,12 +118,15 @@ void Renderer::createTextureFromFile(std::string path, int objectType) {
       _normal_frames.emplace_back(std::make_unique<SDL_Texture *> (frame));
     else if (objectType == 1)
       _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (frame));
-      else if (objectType == 2) 
+      else if (objectType == 2) {
       _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
+      printf("Texture from planet created \r\n");
+      }
     else if (objectType == 2) 
     ;
     else
-      printf("Texture from unnokn object type createt \r\n");
+      printf("Texture from unknown object type created \r\n");
+     
 }
 
 
