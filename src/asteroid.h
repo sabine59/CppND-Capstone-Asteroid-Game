@@ -8,7 +8,18 @@ class Asteroid : public CelBody {
  public:
 
   Asteroid(int screen_width, int screen_height, float start_x, float start_y, float size, float v_x, float v_y, std::string path, Uint32 timeOfAppearance)
-      : CelBody(screen_width, screen_height, start_x, start_y, size, v_x, v_y, path, timeOfAppearance) { }
+      : CelBody(screen_width, screen_height, start_x, start_y, size, v_x, v_y, path, timeOfAppearance) 
+  { 
+     if (path == "./images/fuelcann.bmp") {
+      energieBonus = 100;
+     } else if (path == "./images/zimtstern.bmp")  {
+      energieBonus = 30;
+     } else if (path == "./images/java.bmp")  {
+       energieBonus = 50;
+     } else {
+      energieBonus = 0;
+     }
+  }
 
   ~Asteroid();
 
@@ -17,6 +28,8 @@ class Asteroid : public CelBody {
   void Update(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring)  { this->UpdatePosition1(ufo_rect, ufo_fire_rect, hitCounter, enegieCounter, ufo_isFiring); };
   bool isHit = false;
   bool alive = true;
+  bool textureAlredyExists = false;
+  int energieBonus = 0;
 
  private:
   void UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring);

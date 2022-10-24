@@ -41,6 +41,9 @@ class Game {
     "./images/asteroid9.bmp",
     "./images/asteroid10.bmp",
     "./images/asteroid12.bmp",
+    "./images/fuelcann.bmp",
+    "./images/zimtstern.bmp",
+    "./images/java.bmp"
   };
  
   Ufo ufo;
