@@ -8,8 +8,8 @@
 
 class Ufo {
  public:
-  enum class Direction { kUp, kDown, kLeft, kRight, none };
-
+  //enum class Direction { kUp, kDown, kLeft, kRight, none };
+  enum class Direction { kUp, kDown, none };
   Ufo(int screen_width, int screen_height, const float screenFactorX, const float screenFactorY)
       : _screen_width(screen_width), _screen_height(screen_height) {
         	rect_ufo.w = (int)164.0*screenFactorX;
@@ -24,13 +24,15 @@ class Ufo {
 
   Direction direction = Direction::none;
 
-  float speed{6.5f};
 
   bool alive{true};
-
+  float speed{6.5f};
   SDL_Rect rect_ufo;
+  SDL_Rect ufo_fire_rect;;
   bool isFiring=false;
-
+  bool hasFired=false;
+  int hitCounter=0;
+  int energieCounter=100;
   static std::vector<std::string> normal_frame_files;
   static std::vector<std::string> firing_frame_files;
 

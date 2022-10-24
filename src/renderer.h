@@ -15,7 +15,7 @@ class Renderer {
 
   void createTextureFromFile(std::string path, int objectType);
   void Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planets, std::vector<std::shared_ptr<Asteroid *>>  &asteroids);
-  void UpdateWindowTitle(int score, int fps);
+  void UpdateWindowTitle(int energie, int hits, int fps);
 
  private:
   SDL_Window *sdl_window;

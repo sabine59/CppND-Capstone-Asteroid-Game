@@ -49,7 +49,7 @@ int main() {
   Game game(current.w, current.h, screenFactorX, screenFactorY);
   game.Run(controller, renderer, kMsPerFrame);
   std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << game.GetScore() << "\n";
+  //std::cout << "Score: " << game.GetScore() << "\n";
   SDL_Quit();
   return 0;
 }

@@ -13,7 +13,10 @@ void Controller::HandleInput(bool &running, Ufo &ufo) const {
     } else if (e.type == SDL_KEYDOWN) {
       switch (e.key.keysym.sym) {
         case SDLK_f:
-          ufo.isFiring = true;
+          if (ufo.alive) {
+             ufo.isFiring = true;
+             ufo.hasFired = true;
+          }
           break;
           
         case SDLK_UP:
@@ -24,13 +27,13 @@ void Controller::HandleInput(bool &running, Ufo &ufo) const {
           ufo.direction = Ufo::Direction::kDown;
           break;
 
-        case SDLK_LEFT:
+ /*       case SDLK_LEFT:
           ufo.direction = Ufo::Direction::kLeft;
           break;
 
         case SDLK_RIGHT:
           ufo.direction = Ufo::Direction::kRight;
-          break;
+          break; */
           
           
         default:

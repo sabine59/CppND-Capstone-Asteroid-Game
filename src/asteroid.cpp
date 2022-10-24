@@ -3,7 +3,7 @@
 Asteroid::~Asteroid() { CelBody::~CelBody(); };
 
 
-void Asteroid::UpdatePosition1(SDL_Rect ufo_rect) {
+void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &ufo_hits, int &ufo_energie, bool ufo_isFiring) {
    if (_isOnStage) {
     //The members of the rect are int variables. The rect comes from the SDL lib.
     //To get a higher resolution for the velocity _vel_x, _vel_y are used.
@@ -51,7 +51,18 @@ void Asteroid::UpdatePosition1(SDL_Rect ufo_rect) {
       _vel_y = 0;
     }
 
- 
+    if (SDL_HasIntersection(&rect, &ufo_rect)== SDL_TRUE) {
+      if (_hadNoIntersection) {
+      ufo_hits++;
+      ufo_energie -= 5;
+      _hadNoIntersection = false;
+      }
+    }
+     if (ufo_isFiring) {
+      if (SDL_HasIntersection(&rect, &ufo_fire_rect)== SDL_TRUE) {
+         alive = false;  // asteroid was destoyed by ufo fire
+      }
+    }
        //printf("UpdatePosition is called %s \n", filepath.c_str());
     if ( _screen_width < rect.x  || (rect.x+rect.w) < 0 ) {
       

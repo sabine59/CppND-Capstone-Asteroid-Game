@@ -27,14 +27,18 @@ std::vector<std::string> Ufo::firing_frame_files {
     };
 
 void Ufo::Update() {
-  SDL_Point prev_cell{
-      static_cast<int>(rect_ufo.x),
-      static_cast<int>(rect_ufo.y)};  // We first capture the ufo's cell before updating.
+  if (energieCounter <= 0)
+    alive = false;
+  if (hasFired) {
+    energieCounter-= 2;
+    hasFired=false;
+  }
   UpdatePosition();
 
 }
 
 void Ufo::UpdatePosition() {
+  // Ufo can only move in y-direction
   switch (direction) {
     case Direction::kUp:
       if (rect_ufo.y > speed)
@@ -46,7 +50,7 @@ void Ufo::UpdatePosition() {
       	rect_ufo.y += speed;
       break;
 
-    case Direction::kLeft:
+ /*  case Direction::kLeft:
       if (rect_ufo.x > speed)
       	rect_ufo.x -= speed;
       break;
@@ -55,14 +59,19 @@ void Ufo::UpdatePosition() {
       
       if (rect_ufo.x < ( _screen_width - speed - rect_ufo.w))
       	rect_ufo.x += speed;
-      break;
+      break; */
     
     case Direction::none:
       break;
       
   }
   direction = Direction::none;
- 
+
+  // compute the rect for the range of the ufo fire 
+  ufo_fire_rect.x = rect_ufo.x + (rect_ufo.w/2);
+  ufo_fire_rect.y = rect_ufo.y;
+  ufo_fire_rect.w = rect_ufo.w;
+  ufo_fire_rect.h = rect_ufo.h;
 }
 
 
