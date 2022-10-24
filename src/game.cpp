@@ -35,15 +35,24 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height, cons
       
       // asteroids
 
-      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*15,  sfX*8.0, -sfY*6.0, asteroidPaths[0], sfX*(game_start+1000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*15,  sfX*30.0, -sfY*6.0, asteroidPaths[0], sfX*(game_start+1000))));
 
-      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*10,  sfX*10.0, -sfY*7.0, asteroidPaths[1], sfX*(game_start+15000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*18,  sfX*25.0, -sfY*7.0, asteroidPaths[1], sfX*(game_start+15000))));
 
-      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*12,  sfX*12.0, -sfY*7.0, asteroidPaths[2], sfX*(game_start+30000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*15,  sfX*36.0, -sfY*7.0, asteroidPaths[2], sfX*(game_start+30000))));
 
-      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*20,  sfX*15.0, -sfY*7.0, asteroidPaths[3], sfX*(game_start+35000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*30,  sfX*15.0, -sfY*7.0, asteroidPaths[3], sfX*(game_start+35000))));
 
-      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*15,  sfX*12.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+45000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*25,  sfX*35.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+40000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*15,  sfX*45.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+45000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*20,  sfX*18.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+48000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*16,  sfX*25.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+50000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*18,  sfX*28.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+55000))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*25,  sfX*45.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+55100))));
+      asteroids.emplace_back(std::make_unique <Asteroid *> (new Asteroid(screen_width, screen_height, screen_width, sfY*screen_height*25/100/sfY, sfX*18,  sfX*30.0, -sfY*9.0, asteroidPaths[4], sfX*(game_start+56000))));
+     
+      
+      
       }
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) {
@@ -97,7 +106,7 @@ void Game::CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer) {
         
     	//printf("Time to appear frame_start: %u, time to appear %u \n", frame_start, (*(planet).get())->GetTimeOA());
         if (!(*(planet).get())->_isOnStage ) {
-          printf("planet is not yet on stage \n");
+          //printf("planet is not yet on stage \n");
         	renderer.createTextureFromFile((*(planet).get())->filepath, 2);
           (*(planet).get())->_isOnStage = true;
         }
@@ -110,7 +119,7 @@ void Game::CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer) {
         
     	//printf("Time to appear frame_start: %u, time to appear %u \n", frame_start, (*(planet).get())->GetTimeOA());
         if (!(*(asteroid).get())->_isOnStage ) {
-          printf("asteroid is not yet on stage \n");
+          //printf("asteroid is not yet on stage \n");
         	renderer.createTextureFromFile((*(asteroid).get())->filepath, 3);
           (*(asteroid).get())->_isOnStage = true;
         }

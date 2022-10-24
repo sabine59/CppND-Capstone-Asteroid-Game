@@ -125,11 +125,11 @@ void Renderer::createTextureFromFile(std::string path, int objectType) {
       _firing_frames.emplace_back(std::make_unique<SDL_Texture *> (frame));
     else if (objectType == 2) {
       _celBodyTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
-      printf("Texture from planet created \r\n");
+      //printf("Texture from planet created \r\n");
       }
     else if (objectType == 3) {
      _asteroidTextures.emplace_back(std::make_unique<SDL_Texture *> (frame));
-     printf("Texture from asteroid created \r\n");
+     //printf("Texture from asteroid created \r\n");
     }
     else
       printf("Texture from unknown object type created \r\n");
@@ -187,14 +187,14 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>>  &planet
        if (*(_asteroidTextures).at(i-1).get() && (*(asteroids).at(i-1).get())->_isOnStage) {
     	   SDL_RenderCopy(sdl_renderer, *(_asteroidTextures).at(i-1).get(), NULL, &(*(asteroids).at(i-1).get())->rect);
          //printf("render planet %u \n", i-1);
-       }  else {
+       }  /* else {
         // Destroy the planet and its texture as soon as it has left the stage
         asteroids.erase(asteroids.begin() + (i-1));
         //printf("erase planet %u \n", i-1);
         SDL_DestroyTexture(*(_asteroidTextures).at(i-1).get());
         _asteroidTextures.erase(_asteroidTextures.begin() + (i-1));
         break;
-       } 
+       } */
      }
    }
   

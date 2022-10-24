@@ -17,20 +17,20 @@ class CelBody {
             _growing_rect_y = (int) start_y;
         }
   ~CelBody();
+  int _screen_width;
+  int _screen_height;
+  float _velocity_x;
+  float _velocity_y;
   bool _isOnStage = false;
   bool _expectedOnStage = true;
   SDL_Rect rect;
   std::string filepath;
   Uint32 GetTimeOA() { return _timeOA; }
-  void Update(SDL_Rect ufo_rect) { this->UpdatePosition(ufo_rect); };
+  virtual void Update(SDL_Rect ufo_rect) { this->UpdatePosition(ufo_rect); };
   
  private:
   void UpdatePosition(SDL_Rect ufo_rect);
   Uint32 _timeOA;
-  int _screen_width;
-  int _screen_height;
-  float _velocity_x;
-  float _velocity_y;
   float _vel_x=0;
   float _vel_y=0;
   int _growing_rect_y;
