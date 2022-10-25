@@ -23,15 +23,17 @@ class Asteroid : public CelBody {
 
   ~Asteroid();
 
-  //void Update(SDL_Rect ufo_rect) override { this->UpdatePosition1(ufo_rect); };
+  void Update(Ufo &ufo) override { this->UpdatePosition1(ufo); };
 
-  void Update(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring)  { this->UpdatePosition1(ufo_rect, ufo_fire_rect, hitCounter, enegieCounter, ufo_isFiring); };
+  //void Update(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring)  { this->UpdatePosition1(ufo_rect, ufo_fire_rect, hitCounter, enegieCounter, ufo_isFiring); };
   bool isHit = false;
   bool alive = true;
   int energieBonus = 0;
 
  private:
-  void UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring);
+  //void UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring);
+
+  void UpdatePosition1(Ufo &ufo);
 
   float _vel_x=0;
   float _vel_y=0;

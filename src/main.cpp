@@ -40,6 +40,8 @@ int main() {
   }
   current.w = current.w/3;
   current.h = current.h/3;
+
+  SDL_Log("Display : current resolution is %dx%dpx.", current.w, current.h);
   //current.w = 1000;
   //current.h = 1000;
   float screenFactorX = (float)current.w/1280.0; 

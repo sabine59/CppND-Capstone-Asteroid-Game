@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include "SDL.h"
+#include "ufo.h"
 
 class CelBody {
  public:
@@ -26,10 +27,10 @@ class CelBody {
   SDL_Rect rect;
   std::string filepath;
   Uint32 GetTimeOA() { return _timeOA; }
-  virtual void Update(SDL_Rect ufo_rect) { this->UpdatePosition(ufo_rect); };
+  virtual void Update(Ufo &ufo) { this->UpdatePosition(ufo); };
   
  private:
-  void UpdatePosition(SDL_Rect ufo_rect);
+  void UpdatePosition(Ufo &ufo);
   Uint32 _timeOA;
   float _vel_x=0;
   float _vel_y=0;

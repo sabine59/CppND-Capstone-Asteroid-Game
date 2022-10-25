@@ -182,10 +182,10 @@ void Game::Update()
   ufo.Update();
   for (std::shared_ptr planet : planets)
   {
-    (*(planet).get())->Update(ufo.rect_ufo);
+    (*(planet).get())->Update(ufo);
   }
   for (std::shared_ptr asteroid : asteroids)
   {
-    (*(asteroid).get())->Update(ufo.rect_ufo, ufo.ufo_fire_rect, ufo.hitCounter, ufo.energieCounter, ufo.isFiring);
+    (*(asteroid).get())->Update(ufo);
   }
 }

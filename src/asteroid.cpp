@@ -2,7 +2,7 @@
 
 Asteroid::~Asteroid() { CelBody::~CelBody(); };
 
-void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &ufo_hits, int &ufo_energie, bool ufo_isFiring)
+void Asteroid::UpdatePosition1(Ufo &ufo)
 {
   if (_isOnStage)
   {
@@ -90,21 +90,21 @@ void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &u
       _vel_y = 0;
     }
 
-    if (ufo_isFiring)
+    if (ufo.isFiring)
     {
-      if ((SDL_HasIntersection(&rect, &ufo_fire_rect) == SDL_TRUE) && (alive==true))
+      if ((SDL_HasIntersection(&rect, &ufo.ufo_fire_rect) == SDL_TRUE) && (alive==true))
       {
         alive = false; // asteroid was destoyed by ufo fire
-        ufo_energie = ufo_energie + energieBonus;
+        ufo.energieCounter = ufo.energieCounter + energieBonus;
       }
     }
 
-    if (SDL_HasIntersection(&rect, &ufo_rect) == SDL_TRUE && (alive == true))
+    if (SDL_HasIntersection(&rect, &ufo.rect_ufo) == SDL_TRUE && (alive == true))
     {
       if (_hadNoIntersection)
       {
-        ufo_hits++;
-        ufo_energie -= 5;
+        ufo.hitCounter++;
+        ufo.energieCounter -= 5;
         _hadNoIntersection = false;
       }
     }
