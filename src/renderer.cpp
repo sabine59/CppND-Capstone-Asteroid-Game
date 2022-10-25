@@ -7,10 +7,7 @@ Renderer::Renderer(const std::size_t screen_width,
     : screen_width(screen_width),
       screen_height(screen_height)
 {
-  // Initialize SDL
-  /*  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-      std::cerr << "SDL could not initialize.\n";
-      std::cerr << "SDL_Error: " << SDL_GetError() << "\n"; */
+
   rect_b1.w = screen_width;
   rect_b1.h = screen_height;
   rect_b1.x = 0;
@@ -38,11 +35,10 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
-  // sdl_window_surface =  SDL_GetWindowSurface(sdl_window);
 
+  // load the texture for the star background
   const char *image_path = "./images/bgstars_1.bmp";
   image = SDL_LoadBMP(image_path);
-
   if (!image)
   {
     printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
@@ -56,6 +52,21 @@ Renderer::Renderer(const std::size_t screen_width,
   }
   SDL_FreeSurface(image);
 
+  // load texture from home planet for the end of game
+  image_path = "./images/home.bmp";
+  image = SDL_LoadBMP(image_path);
+  if (!image)
+  {
+    printf("Failed to load image at %s: %s\n", image_path, SDL_GetError());
+    return;
+  }
+  home = SDL_CreateTextureFromSurface(sdl_renderer, image);
+  if (!background)
+  {
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create textureasteroid1 from surface: %s", SDL_GetError());
+    return;
+  }
+  SDL_FreeSurface(image);
   // load the textures for the ufo normal appearance frames
   for (std::string image_path : Ufo::normal_frame_files)
   {
@@ -79,6 +90,7 @@ Renderer::Renderer(const std::size_t screen_width,
 Renderer::~Renderer()
 {
   SDL_DestroyTexture(background);
+  SDL_DestroyTexture(home);
   // Although the vector<unique_ptr> is destroyed automatically,
   // the SDL lib requires the destruction of the SDL_texture.
   // As the lib is not written in c++, there is no destructor,
@@ -143,85 +155,93 @@ void Renderer::createTextureFromFile(std::string path, int objectType)
     _asteroidTextures.emplace_back(std::make_unique<SDL_Texture *>(frame));
     // printf("Texture from asteroid created \r\n");
   }
-  else
-    printf("Texture from unknown object type created \r\n");
 }
 
-
-void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets, std::vector<std::shared_ptr<Asteroid *>> &asteroids)
+void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets, std::vector<std::shared_ptr<Asteroid *>> &asteroids, bool gameOver)
 {
- 
+
   // Clear screen
   // SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
-
-  // Render the background. The texture is horizontally scrolled in an endless loop.
-  xpos_factor++;
-  if (xpos_factor >= 9)
+  if (!gameOver)
   {
-    rect_b1.x--;
-    if (rect_b1.x + screen_width <= 0)
-      rect_b1.x = screen_width - 1;
-    rect_b2.x--;
-    if (rect_b2.x + screen_width <= 0)
-      rect_b2.x = screen_width - 1;
-    xpos_factor = 0;
-  }
-  SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b1);
-  SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b2);
-
-  // render planets
-  if (!_celBodyTextures.empty())
-  {
-    // printf("_celBody not empty \n");
-
-    for (unsigned int i = _celBodyTextures.size(); i > 0; i--)
+    // Render the background. The texture is horizontally scrolled in an endless loop.
+    xpos_factor++;
+    if (xpos_factor >= 9)
     {
-      if (*(_celBodyTextures).at(i - 1).get() && (*(planets).at(i - 1).get())->_isOnStage)
+      rect_b1.x--;
+      if (rect_b1.x + screen_width <= 0)
+        rect_b1.x = screen_width - 1;
+      rect_b2.x--;
+      if (rect_b2.x + screen_width <= 0)
+        rect_b2.x = screen_width - 1;
+      xpos_factor = 0;
+    }
+    SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b1);
+    SDL_RenderCopy(sdl_renderer, background, NULL, &rect_b2);
+
+    // render planets
+    if (!_celBodyTextures.empty())
+    {
+      // printf("_celBody not empty \n");
+
+      for (unsigned int i = _celBodyTextures.size(); i > 0; i--)
       {
-        SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i - 1).get(), NULL, &(*(planets).at(i - 1).get())->rect);
-        // printf("render planet %u \n", i-1);
+        if (*(_celBodyTextures).at(i - 1).get() && (*(planets).at(i - 1).get())->_isOnStage)
+        {
+          SDL_RenderCopy(sdl_renderer, *(_celBodyTextures).at(i - 1).get(), NULL, &(*(planets).at(i - 1).get())->rect);
+          // printf("render planet %u \n", i-1);
+        }
+        else
+        {
+          // Destroy the planet and its texture as soon as it has left the stage
+          planets.erase(planets.begin() + (i - 1));
+          // printf("erase planet %u \n", i-1);
+          SDL_DestroyTexture(*(_celBodyTextures).at(i - 1).get());
+          _celBodyTextures.erase(_celBodyTextures.begin() + (i - 1));
+          break;
+        }
       }
-      else
+    }
+
+    // render the asteroids
+    if (!_asteroidTextures.empty())
+    {
+      // printf("_celBody not empty \n");
+
+      for (unsigned int i = _asteroidTextures.size(); i > 0; i--)
       {
-        // Destroy the planet and its texture as soon as it has left the stage
-        planets.erase(planets.begin() + (i - 1));
-        // printf("erase planet %u \n", i-1);
-        SDL_DestroyTexture(*(_celBodyTextures).at(i - 1).get());
-        _celBodyTextures.erase(_celBodyTextures.begin() + (i - 1));
-        break;
+        if (*(_asteroidTextures).at(i - 1).get() && (*(asteroids).at(i - 1).get())->_isOnStage)
+        {
+
+          if ((*(asteroids).at(i - 1).get())->alive)
+            // SDL_SetTextureColorMod(*(_asteroidTextures).at(i - 1).get(), 0xc0, 0x00, 0x00);
+            SDL_RenderCopy(sdl_renderer, *(_asteroidTextures).at(i - 1).get(), NULL, &(*(asteroids).at(i - 1).get())->rect);
+        }
+        /*     else
+            {
+              // Destroy the asteroids and itheir texture as soon as it has left the stage
+              asteroids.erase(asteroids.begin() + (i - 1));
+              // printf("erase planet %u \n", i-1);
+              SDL_DestroyTexture(*(_asteroidTextures).at(i - 1).get());
+              _asteroidTextures.erase(_asteroidTextures.begin() + (i - 1));
+              break;
+            } */
       }
     }
   }
-
-  // render the asteroids
-  if (!_asteroidTextures.empty())
+  else
   {
-    // printf("_celBody not empty \n");
-
-    for (unsigned int i = _asteroidTextures.size(); i > 0; i--)
-    {
-      if (*(_asteroidTextures).at(i - 1).get() && (*(asteroids).at(i - 1).get())->_isOnStage)
-      {
-
-        if ((*(asteroids).at(i - 1).get())->alive) 
-           //SDL_SetTextureColorMod(*(_asteroidTextures).at(i - 1).get(), 0xc0, 0x00, 0x00);
-           SDL_RenderCopy(sdl_renderer, *(_asteroidTextures).at(i - 1).get(), NULL, &(*(asteroids).at(i - 1).get())->rect);
-      } 
-  /*     else
-      {
-        // Destroy the asteroids and itheir texture as soon as it has left the stage
-        asteroids.erase(asteroids.begin() + (i - 1));
-        // printf("erase planet %u \n", i-1);
-        SDL_DestroyTexture(*(_asteroidTextures).at(i - 1).get());
-        _asteroidTextures.erase(_asteroidTextures.begin() + (i - 1));
-        break;
-      } */
-    }
+    // game over -> show the alien's home planet
+    SDL_Rect home_rect;
+    home_rect.x = 0;
+    home_rect.y = 0;
+    home_rect.w = screen_width;
+    home_rect.h = screen_height;
+    SDL_RenderCopy(sdl_renderer, home, NULL, &home_rect);
   }
 
   // render ufo frames
- 
   lastUfoFrame++;
   if (lastUfoFrame == 9)
     lastUfoFrame = 0;
@@ -229,9 +249,9 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets
   int fireFrameCount = 9;
   if (!ufo.isFiring)
   {
-    if (!ufo.alive) 
+    if (!ufo.alive)
       SDL_SetTextureColorMod(*(_normal_frames).at(lastUfoFrame).get(), 0xc0, 0x00, 0x00);
-  
+
     SDL_RenderCopy(sdl_renderer, *(_normal_frames).at(lastUfoFrame).get(), NULL, &ufo.rect_ufo);
     fireFrameCount = 9;
   }
@@ -246,21 +266,39 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets
       ufo.isFiring = false;
     }
   }
-  //Draw the fire rect to see its range
+  // Draw the fire rect to see its range
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderDrawRect(sdl_renderer, &ufo.ufo_fire_rect);
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::UpdateWindowTitle(int energie, int hits, int fps)
+void Renderer::UpdateWindowTitle(int energie, int hits, int fps, bool gameOver)
 {
-  if (energie >0) {
-     std::string title{"Ufo Energie: " + std::to_string(energie) + " , Ufo Hits: " + std::to_string(hits) + " , FPS: " + std::to_string(fps)};
-     SDL_SetWindowTitle(sdl_window, title.c_str());
-  } else {
-     std::string title{" GAME OVER! YOU HAVE LOST: , FPS: " + std::to_string(fps)};
-     SDL_SetWindowTitle(sdl_window, title.c_str());
+  if (!gameOver)
+  {
+    if (energie > 0)
+    {
+      std::string title{"Ufo Energie: " + std::to_string(energie) + " , Ufo Hits: " + std::to_string(hits) + " , FPS: " + std::to_string(fps)};
+      SDL_SetWindowTitle(sdl_window, title.c_str());
+    }
+    else
+    {
+      std::string title{" GAME OVER! YOU HAVE LOST! Ufo energie: " + std::to_string(energie) + " , FPS: " + std::to_string(fps)};
+      SDL_SetWindowTitle(sdl_window, title.c_str());
+    }
   }
-  
+  else
+  {
+    if (energie > 0)
+    {
+      std::string title{"GAME OVER! YOU HAVE WON! Ufo Energie: " + std::to_string(energie) + " , Ufo Hits: " + std::to_string(hits) + " , FPS: " + std::to_string(fps)};
+      SDL_SetWindowTitle(sdl_window, title.c_str());
+    }
+    else
+    {
+      std::string title{" GAME OVER! YOU HAVE LOST! Ufo energie: " + std::to_string(energie) + " , FPS: " + std::to_string(fps)};
+      SDL_SetWindowTitle(sdl_window, title.c_str());
+    }
+  }
 }

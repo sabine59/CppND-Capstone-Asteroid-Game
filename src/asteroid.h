@@ -36,7 +36,6 @@ class Asteroid : public CelBody {
       wasAlreadyOnStage = false;
       rect.x = (int) _start_x;
       rect.y =  sfY * _screen_height * randy / 100;
-       printf("asteroid reinit rext.x: %d, rect.y %d \n", rect.x, rect.y);
   }
   //void Update(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &hitCounter, int &enegieCounter, bool ufo_isFiring)  { this->UpdatePosition1(ufo_rect, ufo_fire_rect, hitCounter, enegieCounter, ufo_isFiring); };
   bool isHit = false;

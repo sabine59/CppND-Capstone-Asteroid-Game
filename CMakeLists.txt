@@ -11,9 +11,6 @@ project(SDL2Test)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} src)
-
-add_executable(SnakeGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/ufo.cpp src/celestrial_body.cpp)
-string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
-target_link_libraries(SnakeGame ${SDL2_LIBRARIES})
+find_package(SDL2 REQUIRED COMPONENTS SDL2)
+add_executable(AsteroidGame src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/ufo.cpp src/celestrial_body.cpp src/asteroid.cpp)
+target_link_libraries(AsteroidGame PRIVATE SDL2::SDL2)
