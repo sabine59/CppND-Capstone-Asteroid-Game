@@ -38,8 +38,8 @@ int main() {
       SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz.", i, current.w, current.h, current.refresh_rate);
 
   }
-  current.w = current.w/2;
-  current.h = current.h/2;
+  current.w = current.w/3;
+  current.h = current.h/3;
   //current.w = 1000;
   //current.h = 1000;
   float screenFactorX = (float)current.w/1280.0; 

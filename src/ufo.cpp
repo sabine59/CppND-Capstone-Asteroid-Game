@@ -41,13 +41,15 @@ void Ufo::UpdatePosition() {
   // Ufo can only move in y-direction
   switch (direction) {
     case Direction::kUp:
-      if (rect_ufo.y > speed)
+      if ((rect_ufo.y - speed) > 0)
       	rect_ufo.y -= speed;
+        energieCounter-= 3;
       break;
 
     case Direction::kDown:
-      if (rect_ufo.y <( _screen_height - speed - rect_ufo.h))
+      if (rect_ufo.y < ( _screen_height - speed - rect_ufo.h))
       	rect_ufo.y += speed;
+        energieCounter-= 3;
       break;
 
  /*  case Direction::kLeft:
