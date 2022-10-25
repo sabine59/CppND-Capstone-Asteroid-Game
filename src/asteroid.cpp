@@ -12,7 +12,13 @@ void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &u
     // printf("UpdatePosition is called %s \n", filepath.c_str());
     _vel_x += _velocity_x;
     _vel_y += _velocity_y;
-    if (_vel_x > 40)
+
+     if (_vel_x > 50)
+    {
+      rect.x -= 5;
+      _vel_x = 0;
+    }
+    else if (_vel_x > 40)
     {
       rect.x -= 4;
       _vel_x = 0;
@@ -33,7 +39,12 @@ void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &u
       _vel_x = 0;
     }
 
-    if (_vel_y > 40)
+    if (_vel_y > 50)
+    {
+      rect.y -= 5;
+      _vel_y = 0;
+    }
+    else if (_vel_y > 40)
     {
       rect.y -= 4;
       _vel_y = 0;
@@ -51,6 +62,11 @@ void Asteroid::UpdatePosition1(SDL_Rect ufo_rect, SDL_Rect ufo_fire_rect, int &u
     else if (_vel_y > 10)
     {
       rect.y -= 1;
+      _vel_y = 0;
+    }
+    else if (_vel_y < -50)
+    {
+      rect.y += 5;
       _vel_y = 0;
     }
     else if (_vel_y < -40)

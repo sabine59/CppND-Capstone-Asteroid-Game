@@ -13,7 +13,6 @@ class Game {
   Game(const std::size_t screen_width, const std::size_t screen_height, const float screenFactorX, const float screenFactorY);
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
-  int GetScore() const;
   int GetSize() const;
   
 
@@ -55,7 +54,6 @@ class Game {
   std::uniform_int_distribution<int> random_h;
   float sfX;
   float sfY;
-  int score{0};
   
   void CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer);
   void Update();
