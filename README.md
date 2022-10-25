@@ -1,7 +1,7 @@
 # CppND-Capstone-Asteroid-Game
 
 This program uses the SDL 2 library. SDL 2.0 is distributed under the zlib license. This license allows you to use SDL freely in any software.
-<img src="build/images/AndroidGame.png"/>
+<img src="build/images/AsteroidGame.png"/>
 
 Purpose of this game: An alien spacecraft drives through a solar system on its way home.
 But first, it has to cross a field of asteroids and other celestrial bodies.
