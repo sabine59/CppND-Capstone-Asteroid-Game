@@ -204,11 +204,11 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets
       if (*(_asteroidTextures).at(i - 1).get() && (*(asteroids).at(i - 1).get())->_isOnStage)
       {
 
-        if (!(*(asteroids).at(i - 1).get())->alive) 
-           SDL_SetTextureColorMod(*(_asteroidTextures).at(i - 1).get(), 0xc0, 0x00, 0x00);
-        SDL_RenderCopy(sdl_renderer, *(_asteroidTextures).at(i - 1).get(), NULL, &(*(asteroids).at(i - 1).get())->rect);
+        if ((*(asteroids).at(i - 1).get())->alive) 
+           //SDL_SetTextureColorMod(*(_asteroidTextures).at(i - 1).get(), 0xc0, 0x00, 0x00);
+           SDL_RenderCopy(sdl_renderer, *(_asteroidTextures).at(i - 1).get(), NULL, &(*(asteroids).at(i - 1).get())->rect);
       } 
-        else
+  /*     else
       {
         // Destroy the asteroids and itheir texture as soon as it has left the stage
         asteroids.erase(asteroids.begin() + (i - 1));
@@ -216,7 +216,7 @@ void Renderer::Render(Ufo &ufo, std::vector<std::shared_ptr<CelBody *>> &planets
         SDL_DestroyTexture(*(_asteroidTextures).at(i - 1).get());
         _asteroidTextures.erase(_asteroidTextures.begin() + (i - 1));
         break;
-      }
+      } */
     }
   }
 

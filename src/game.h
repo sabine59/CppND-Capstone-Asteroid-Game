@@ -54,7 +54,8 @@ class Game {
   std::uniform_int_distribution<int> random_h;
   float sfX;
   float sfY;
-  
+  int screen_height;
+  int screen_width;
   void CheckForAppearanceOnStage(Uint32 frame_start, Renderer &renderer);
   void Update();
 };

@@ -114,6 +114,7 @@ void Asteroid::UpdatePosition1(Ufo &ufo)
 
       // printf("is !onStage %s \n", filepath.c_str());
       _expectedOnStage = false;
+      wasAlreadyOnStage = true;
       _isOnStage = false;
     }
     if (_screen_height < rect.y || (rect.y + rect.h) < 0)
@@ -121,6 +122,7 @@ void Asteroid::UpdatePosition1(Ufo &ufo)
 
       // printf("is !onStage %s \n", filepath.c_str());
       _expectedOnStage = false;
+       wasAlreadyOnStage = true;
       _isOnStage = false;
     }
   }

@@ -20,10 +20,12 @@ class CelBody {
   ~CelBody();
   int _screen_width;
   int _screen_height;
+
   float _velocity_x;
   float _velocity_y;
   bool _isOnStage = false;
   bool _expectedOnStage = true;
+
   SDL_Rect rect;
   std::string filepath;
   Uint32 GetTimeOA() { return _timeOA; }
