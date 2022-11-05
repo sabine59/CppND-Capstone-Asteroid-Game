@@ -47,4 +47,4 @@ The ufo moves up and down with the arrow keys. It fires with the f-key.
 - The project makes use of references in function declarations.
 - The project uses destructors appropriately.
 - The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate.
-- The project uses smart pointers (The SDL-textures from the SDL lib are raw pointers. They cannot be avoided.)
+- The project uses smart pointers (The SDL-textures from the SDL lib are raw pointers. They cannot be avoided.
