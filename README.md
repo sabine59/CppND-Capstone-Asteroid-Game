@@ -21,7 +21,7 @@ main.cpp - main modul
 controller.cpp/h - keyboard input handling
 game.cpp/h - initialization and control of the game loop
 renderer.cpp/h - rendering the video output
-ufo.cpp/h - clas for the spacecraft
+ufo.cpp/h - class for the spacecraft
 celestrial_body.cpp/h - class for the planets
 asteroid.cpp/h - derived class from celestrial-body. It is used for the handling of the asteroids and bonus bodies.
 
