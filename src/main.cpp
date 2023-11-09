@@ -33,8 +33,11 @@ int main()
   }
 
   // set here the screen size fixed to have everywhere the same relation bewtween width and high
-  current.w = kScreenWidth / 2;
-  current.h = kScreenHeight / 2;
+  //current.w = kScreenWidth / 2;
+  //current.h = kScreenHeight / 2;
+
+  current.w = kScreenWidth;
+  current.h = kScreenHeight;
 
   SDL_Log("Display : current resolution is %dx%dpx.", current.w, current.h);
   // All the movements are computed related to a screen width of 1280

@@ -18,31 +18,31 @@ class Game {
 
  private:
   std::vector<std::string> planetPaths = {
-    "./images/Merkur.bmp", 
-    "./images/Venus.bmp", 
-    "./images/Erde.bmp", 
-    "./images/Mars.bmp", 
-    "./images/Saturn.bmp", 
-    "./images/Jupiter.bmp", 
-    "./images/Neptun.bmp", 
-    "./images/Uranus.bmp"
+    "../images/Merkur.bmp", 
+    "../images/Venus.bmp", 
+    "../images/Erde.bmp", 
+    "../images/Mars.bmp", 
+    "../images/Saturn.bmp", 
+    "../images/Jupiter.bmp", 
+    "../images/Neptun.bmp", 
+    "../images/Uranus.bmp"
   };
 
     std::vector<std::string> asteroidPaths = {
-    "./images/asteroid1.bmp", 
-    "./images/asteroid2.bmp", 
-    "./images/asteroid3.bmp", 
-    "./images/asteroid4.bmp", 
-    "./images/asteroid5.bmp", 
-    "./images/asteroid6.bmp", 
-    "./images/asteroid7.bmp", 
-    "./images/asteroid8.bmp",
-    "./images/asteroid9.bmp",
-    "./images/asteroid10.bmp",
-    "./images/asteroid12.bmp",
-    "./images/fuelcann.bmp",
-    "./images/zimtstern.bmp",
-    "./images/java.bmp"
+    "../images/asteroid1.bmp", 
+    "../images/asteroid2.bmp", 
+    "../images/asteroid3.bmp", 
+    "../images/asteroid4.bmp", 
+    "../images/asteroid5.bmp", 
+    "../images/asteroid6.bmp", 
+    "../images/asteroid7.bmp", 
+    "../images/asteroid8.bmp",
+    "../images/asteroid9.bmp",
+    "../images/asteroid10.bmp",
+    "../images/asteroid12.bmp",
+    "../images/fuelcann.bmp",
+    "../images/zimtstern.bmp",
+    "../images/java.bmp"
   };
  
   Ufo ufo;

@@ -37,7 +37,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // load the texture for the star background
-  const char *image_path = "./images/bgstars_1.bmp";
+  const char *image_path = "../images/bgstars_1.bmp";
   image = SDL_LoadBMP(image_path);
   if (!image)
   {
@@ -53,7 +53,7 @@ Renderer::Renderer(const std::size_t screen_width,
   SDL_FreeSurface(image);
 
   // load texture from home planet for the end of game
-  image_path = "./images/home.bmp";
+  image_path = "../images/home.bmp";
   image = SDL_LoadBMP(image_path);
   if (!image)
   {
