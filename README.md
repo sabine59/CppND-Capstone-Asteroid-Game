@@ -1,7 +1,7 @@
 # CppND-Capstone-Asteroid-Game
 
 This program uses the SDL 2 library. SDL 2.0 is distributed under the zlib license. This license allows you to use SDL freely in any software.
-<img src="build/images/AsteroidGame.png"/>
+<img src="images/AsteroidGame.png"/>
 
 # Build the Project
 - move to the build directory and use "cmake .." to build the makefiles.

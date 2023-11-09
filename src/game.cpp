@@ -17,62 +17,62 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height, cons
   printf("screenFactorX: %f, screenFactorY: %f", sfX, sfY);
   // initialize the planets
   // Uranus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height / 10, sfX * screen_width / 25, sfX * 6.0, 0., planetPaths[7], sfX * (game_start + 500))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height / 12/sfY , sfX * screen_width / 40, sfX * 6.0, 0., planetPaths[7], sfX * (game_start + 500))));
   // Neptun:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 15 / 100, sfX * screen_width / 16, sfX * 3.5, 0., planetPaths[6], sfX * (game_start + 12000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 15 / 100/sfY , sfX * screen_width / 20, sfX * 3.5, 0., planetPaths[6], sfX * (game_start + 12000))));
   // Jupiter:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 15 / 100, sfX * screen_width / 4, sfX * 5.0, 0., planetPaths[5], sfX * (game_start + 20000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , sfX * screen_width / 4, sfX * 6.0, 0., planetPaths[5], sfX * (game_start + 20000))));
   // Saturn:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 35 / 100, sfX * screen_width / 4, sfX * 3.0, 0., planetPaths[4], sfX * (game_start + 50000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 30 / 100/sfY , sfX * screen_width / 4, sfX * 3.0, 0., planetPaths[4], sfX * (game_start + 50000))));
   // Mars:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 55 / 100, sfX * screen_width / 7, sfX * 3.5, 0., planetPaths[3], sfX * (game_start + 120000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 20 / 100/sfY , sfX * screen_width / 7, sfX * 3.5, 0., planetPaths[3], sfX * (game_start + 120000))));
   // Erde:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 35 / 100, sfX * screen_width / 9, sfX * 3.0, 0., planetPaths[2], sfX * (game_start + 210000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 35 / 100/sfY , sfX * screen_width / 9, sfX * 3.0, 0., planetPaths[2], sfX * (game_start + 210000))));
   // Venus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100, sfX * screen_width / 10, sfX * 2.5, 0., planetPaths[1], sfX * (game_start + 250000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , sfX * screen_width / 10, sfX * 2.5, 0., planetPaths[1], sfX * (game_start + 250000))));
   // Venus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 25 / 100, sfX * screen_width / 10, sfX * 2.0, 0., planetPaths[0], sfX * (game_start + 300000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 25 / 100/sfY , sfX * screen_width / 10, sfX * 2.0, 0., planetPaths[0], sfX * (game_start + 300000))));
 
   // set up the asteroids
   int x = random_w(engine);
   int y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * x, -sfY * 6.0, asteroidPaths[0], sfX * (game_start + 1000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * 2*x, -sfY * 6.0, asteroidPaths[0], sfX * (game_start + 1000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * x, -sfY * 7.0, asteroidPaths[1], sfX * (game_start + 15000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * 2*x, -sfY * 7.0, asteroidPaths[1], sfX * (game_start + 15000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * x, -sfY * 7.0, asteroidPaths[2], sfX * (game_start + 30000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * 2*x, -sfY * 7.0, asteroidPaths[2], sfX * (game_start + 30000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * x, -sfY * 7.0, asteroidPaths[3], sfX * (game_start + 35000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * 2*x, -sfY * 7.0, asteroidPaths[3], sfX * (game_start + 35000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * x, -sfY * 9.0, asteroidPaths[4], sfX * (game_start + 40000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * 2*x, -sfY * 9.0, asteroidPaths[4], sfX * (game_start + 40000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * x, -sfY * 9.0, asteroidPaths[13], sfX * (game_start + 43200))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * 2*x, -sfY * 9.0, asteroidPaths[13], sfX * (game_start + 43200))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * x, -sfY * 7.0, asteroidPaths[1], sfX * (game_start + 44000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * 2*x, -sfY * 7.0, asteroidPaths[1], sfX * (game_start + 44000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * x, -sfY * 9.0, asteroidPaths[5], sfX * (game_start + 45000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 15, sfX * 2*x, -sfY * 9.0, asteroidPaths[5], sfX * (game_start + 45000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * x, -sfY * 9.0, asteroidPaths[11], sfX * (game_start + 47000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * 2*x, -sfY * 9.0, asteroidPaths[11], sfX * (game_start + 47000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 20, sfX * x, -sfY * 9.0, asteroidPaths[6], sfX * (game_start + 48000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 20, sfX * 2*x, -sfY * 9.0, asteroidPaths[6], sfX * (game_start + 48000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * x, -sfY * 9.0, asteroidPaths[12], sfX * (game_start + 48100))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * 2*x, -sfY * 9.0, asteroidPaths[12], sfX * (game_start + 48100))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 16, sfX * x, -sfY * 9.0, asteroidPaths[7], sfX * (game_start + 50000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 16, sfX * 2*x, -sfY * 9.0, asteroidPaths[7], sfX * (game_start + 50000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * x, -sfY * 9.0, asteroidPaths[4], sfX * (game_start + 50100))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * 2*x, -sfY * 9.0, asteroidPaths[4], sfX * (game_start + 50100))));
   // x = random_w(engine);
   // y = random_h(engine);
   // asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * x, -sfY * 9.0, asteroidPaths[12], sfX * (game_start + 51000))));
@@ -81,16 +81,16 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height, cons
   // asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * x, -sfY * 9.0, asteroidPaths[13], sfX * (game_start + 51200))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * x, -sfY * 9.0, asteroidPaths[8], sfX * (game_start + 55000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * 2*x, -sfY * 9.0, asteroidPaths[8], sfX * (game_start + 55000))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * x, -sfY * 9.0, asteroidPaths[9], sfX * (game_start + 55100))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 25, sfX * 2*x, -sfY * 9.0, asteroidPaths[9], sfX * (game_start + 55100))));
   // x = random_w(engine);
   // y = random_h(engine);
   // asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 30, sfX * x, -sfY * 9.0, asteroidPaths[13], sfX * (game_start + 56200))));
   x = random_w(engine);
   y = random_h(engine);
-  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * x, -sfY * 9.0, asteroidPaths[10], sfX * (game_start + 57000))));
+  asteroids.emplace_back(std::make_shared<Asteroid *>(new Asteroid(screen_width, screen_height, screen_width, sfY * screen_height * y / 100, sfX * 18, sfX * 2*x, -sfY * 9.0, asteroidPaths[10], sfX * (game_start + 57000))));
   // set up the bonus bodies
 }
 
@@ -195,7 +195,7 @@ void Game::Update()
   for (std::shared_ptr planet : planets)
   {
     (*(planet).get())->Update(ufo);
-    if ((*(planet).get())->filepath.compare("./images/Merkur.bmp") == 0)
+    if ((*(planet).get())->filepath.compare("../images/Merkur.bmp") == 0)
     {
       if ((*(planet).get())->rect.x <= (ufo.rect_ufo.x + ufo.rect_ufo.w))
       {

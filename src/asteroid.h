@@ -12,11 +12,11 @@ class Asteroid : public CelBody {
   { 
      _start_x = start_x;
      _start_y = start_y;
-     if (path.compare("./images/fuelcann.bmp") == 0) {
+     if (path.compare("../images/fuelcann.bmp") == 0) {
       energieBonus = 100;
-     } else if (path.compare("./images/zimtstern.bmp") == 0)  {
+     } else if (path.compare("../images/zimtstern.bmp") == 0)  {
       energieBonus = 30;
-     } else if (path.compare("./images/java.bmp") == 0)  {
+     } else if (path.compare("../images/java.bmp") == 0)  {
        energieBonus = 50;
      } else {
       energieBonus = 0;

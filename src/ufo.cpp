@@ -44,13 +44,13 @@ void Ufo::UpdatePosition()
   case Direction::kUp:
     if ((rect_ufo.y - speed) > 0)
       rect_ufo.y -= speed;
-    energieCounter -= 3;
+    energieCounter -= 1;
     break;
 
   case Direction::kDown:
     if (rect_ufo.y < (_screen_height - speed - rect_ufo.h))
       rect_ufo.y += speed;
-    energieCounter -= 3;
+    energieCounter -= 1;
     break;
 
     /*  case Direction::kLeft:

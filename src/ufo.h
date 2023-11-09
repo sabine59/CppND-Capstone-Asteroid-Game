@@ -19,8 +19,8 @@ public:
     Ufo(int screen_width, int screen_height, const float screenFactorX, const float screenFactorY)
         : _screen_width(screen_width), _screen_height(screen_height)
     {
-        rect_ufo.w = (int)164.0 * screenFactorX;
-        rect_ufo.h = (int)70.0 * screenFactorX;
+        rect_ufo.w = (int)164.0 * 0.5* screenFactorX;
+        rect_ufo.h = (int)70.0 * 0.5*screenFactorX;
         rect_ufo.x = screen_width / 3;
         rect_ufo.y = screen_height / 2;
     }
@@ -30,7 +30,7 @@ public:
     Direction direction = Direction::none;
 
     bool alive{true};
-    float speed{6.5f};
+    float speed{2*6.5f};
     SDL_Rect rect_ufo;
     SDL_Rect ufo_fire_rect;
     ;

@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <cmath>
 #include "SDL.h"
 #include "ufo.h"
 
