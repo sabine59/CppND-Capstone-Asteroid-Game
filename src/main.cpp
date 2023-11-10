@@ -3,6 +3,7 @@
 #include "game.h"
 #include "renderer.h"
 
+
 int main()
 {
   constexpr std::size_t kFramesPerSecond{60};
@@ -13,7 +14,7 @@ int main()
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
   {
-    std::cerr << "SDL could not initialize.\n";
+    std::cerr << "SDL could not initialize video.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
   static int display_in_use = 0; /* Only using first display */
@@ -37,17 +38,21 @@ int main()
   current.h = kScreenHeight / 2;
 
   //current.w = kScreenWidth;
- // current.h = kScreenHeight;
+  //current.h = kScreenHeight;
 
   SDL_Log("Display : current resolution is %dx%dpx.", current.w, current.h);
   // All the movements are computed related to a screen width of 1280
   // To keep the layout the same, a screen factor is necessary.
   float screenFactorX = (float)current.w / 1280.0;
   float screenFactorY = (float)current.h / 720.0;
+
+
+
   Renderer renderer(current.w, current.h);
   Controller controller;
   Game game(current.w, current.h, screenFactorX, screenFactorY);
   game.Run(controller, renderer, kMsPerFrame);
+
   std::cout << "Game has terminated successfully!\n";
   SDL_Quit();
   return 0;

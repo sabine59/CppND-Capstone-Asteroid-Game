@@ -6,16 +6,19 @@ void CelBody::UpdatePosition(Ufo &ufo)
 {
   if (_isOnStage)
   {
-    int closeToFactor = 0;
+    float closeToFactor = 0.0;
     
     int distance = sqrt(pow(ufo.rect_ufo.x + ufo.rect_ufo.w /2- rect.x -rect.w/2, 2) + pow(ufo.rect_ufo.y + ufo.rect_ufo.y /2- rect.y -rect.h/2, 2) );
+    int room = sqrt(pow(_screen_width, 2) + pow( _screen_width, 2))/3;
+
     if (distance>0)
     {
-      closeToFactor = 1000/distance;
-      SDL_Log("distance is %dx.", distance);
+      closeToFactor = room/distance;
+      //SDL_Log("distance is %d, room is %d. %f", distance, room, closeToFactor);
     }
 
   
+    //_growing += 0.0003 * rect.w ; // grows dependent of the bodies size
     _growing += 0.0003 * rect.w * closeToFactor; // grows dependent of the bodies size
     // The members of the rect are int variables. The rect comes from the SDL lib.
     // To get a higher resolution for the velocity _vel_x, _vel_y are used.
@@ -46,25 +49,26 @@ void CelBody::UpdatePosition(Ufo &ufo)
         // the body grows, until its middle has reached the x-pos + width of the ufo.
         rect.w += 1;
         rect.h += 1;
-        
+      
         _growing_count++;
-        if (_growing_count == 1)
+        if (_growing_count/2 == 0)
         {
-          _growing_rect_y -= 1;
+          _growing_rect_y += 1;
+          rect.y = _growing_rect_y;
           if (_growing_rect_y < 0)
           {
             rect.y = 0; // the body isn't any more displayed, if the y-position is outside the screen
           }
         }
       }
-      else if (ufo.rect_ufo.x > (rect.x + (2*rect.w/3)))
+      else if (ufo.rect_ufo.x > (rect.x + (rect.w)))
       {
         // after the ufo has left the x-pos+width of the body's middle the body shrinks again.
         rect.w -= 1;
         rect.h -= 1;
       
         _growing_count++;
-        if (_growing_count == 2)
+        if (_growing_count/2 == 0)
         {
           _growing_rect_y += 1;
           if (_growing_rect_y >= 0)

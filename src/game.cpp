@@ -17,21 +17,21 @@ Game::Game(const std::size_t screen_width, const std::size_t screen_height, cons
   printf("screenFactorX: %f, screenFactorY: %f", sfX, sfY);
   // initialize the planets
   // Uranus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height / 12/sfY , sfX * screen_width / 40, sfX * 6.0, 0., planetPaths[7], sfX * (game_start + 500))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height / 12/sfY , screen_width / 70, sfX * 6.0, 0., planetPaths[7],  (game_start + 500))));
   // Neptun:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 15 / 100/sfY , sfX * screen_width / 20, sfX * 3.5, 0., planetPaths[6], sfX * (game_start + 12000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 15 / 100/sfY , screen_width / 10, sfX * 3.5, 0., planetPaths[6],  (game_start + 12000))));
   // Jupiter:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , sfX * screen_width / 4, sfX * 6.0, 0., planetPaths[5], sfX * (game_start + 20000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , screen_width / 2, sfX * 6.0, 0., planetPaths[5],  (game_start + 20000))));
   // Saturn:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 30 / 100/sfY , sfX * screen_width / 4, sfX * 3.0, 0., planetPaths[4], sfX * (game_start + 50000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 30 / 100/sfY , screen_width / 2, sfX * 3.0, 0., planetPaths[4],  (game_start + 50000))));
   // Mars:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 20 / 100/sfY , sfX * screen_width / 7, sfX * 3.5, 0., planetPaths[3], sfX * (game_start + 120000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 5 / 100/sfY , screen_width / 3.5, sfX * 3.5, 0., planetPaths[3],  (game_start + 120000))));
   // Erde:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 35 / 100/sfY , sfX * screen_width / 9, sfX * 3.0, 0., planetPaths[2], sfX * (game_start + 210000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 35 / 100/sfY , screen_width / 4.5, sfX * 3.0, 0., planetPaths[2],  (game_start + 190000))));
   // Venus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , sfX * screen_width / 10, sfX * 2.5, 0., planetPaths[1], sfX * (game_start + 250000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 10 / 100/sfY , screen_width / 5, sfX * 2.5, 0., planetPaths[1],  (game_start + 230000))));
   // Venus:
-  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 25 / 100/sfY , sfX * screen_width / 10, sfX * 2.0, 0., planetPaths[0], sfX * (game_start + 300000))));
+  planets.emplace_back(std::make_shared<CelBody *>(new CelBody(screen_width, screen_height, screen_width, sfY * screen_height * 25 / 100/sfY , screen_width / 5, sfX * 2.0, 0., planetPaths[0],  (game_start + 270000))));
 
   // set up the asteroids
   int x = random_w(engine);
